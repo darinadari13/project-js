@@ -31,8 +31,12 @@
 // }
 
 .films-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     @include adaptive(tablet){
         display: flex;
+        flex-direction: row;
         gap: 32px;
         flex-wrap: wrap;
     }
@@ -44,16 +48,18 @@
     
         &__item{
             margin: 0 auto;
-            @include adaptive(tablet){
+            @include adaptive(desktop){
                 margin: 0;
             }
+           
+          
         }
 
 		&__item + .poster{
-            margin-bottom: 20px;
-            @include adaptive(mobile){
-                margin-top: 0px;
-            }
+            // margin-bottom: 20px;
+            // @include adaptive(mobile){
+            //     margin-top: 0px;
+            // }
 
 		}
 
@@ -101,18 +107,18 @@
             line-height: 1.16;
             text-transform: uppercase;
 
-            color: #000000;
+            color: var(--text-color-secondary);
             // margin-left: 85px;
 		}
 
 		&__genre {
-            color: rgba(255, 107, 8, 1);
+            color: var(--accent-color-main);
             // margin-left: 85px;
 		}
 
 		&__year {
             padding-left: 5px;
-            border-left: 1px solid  rgba(255, 107, 8, 1);
+            border-left: 1px solid var(--accent-color-main);
 		}
 }
 .film-list {
