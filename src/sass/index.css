@@ -1,0 +1,71 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 734px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1246px;
+  }
+}
+:root {
+  --accent-color-main: #ff6b08;
+  --accent-color-secondary: #ff001b;
+  --bg-color-main: #ffffff;
+  --bg-color-header: #f7f7f7;
+  --text-color-main: #ffffff;
+  --text-color-secondary: #000000;
+  --text-color-warning: #ff001b;
+  --text-color-header: #545454;
+  --text-color-modal: #8c8c8c;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --time: 250ms;
+}/*# sourceMappingURL=index.css.map */

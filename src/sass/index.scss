@@ -1,2 +1,15 @@
 @import './common';
-@import './example';
+
+@import './components/container';
+
+@import './utils/mixins';
+@import './utils/placeholders';
+@import './utils/variables';
+
+@import './layout/header';
+@import './layout/home-page';
+@import './layout/my-library-page';
+@import './layout/footer';
+@import './layout/modal';
+
+//@import './example';
