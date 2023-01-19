@@ -1,0 +1,122 @@
+
+.content {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    
+}
+// @media screen and (min-width: 480px){
+//     .films-list{
+//         display: flex;
+//         gap: 32px;
+//         flex-wrap: wrap;
+//         &__image{
+//             width: 335px;
+//             height: 455px;
+
+//         }
+//     }
+// }
+// @media screen and (min-width: 768px) {
+//     .films-list{
+//         display: flex;
+//         gap: 16px;
+//         flex-wrap: wrap;
+//         &__image{
+//             width: 395px;
+//             height: 574px;
+
+//         }
+//     }
+    
+// }
+
+.films-list {
+    @include adaptive(tablet){
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+    }
+    @include adaptive(desktop){
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+        &__item{
+            margin: 0 auto;
+            @include adaptive(tablet){
+                margin: 0;
+            }
+        }
+
+		&__item + .poster{
+            margin-bottom: 20px;
+            @include adaptive(mobile){
+                margin-top: 0px;
+            }
+
+		}
+
+		&__link {
+            
+		}
+        &__image-wrapper{
+            margin: 0 auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            
+            
+            
+
+
+        }
+        &__context-wrapper{
+           
+        }
+        &__image{
+           
+            width: 280px;
+            height: 420px;
+            @include adaptive(tablet){
+                width: 335px;
+                height: 455px;
+            }
+            @include adaptive(desktop){
+                width: 394px;
+                height: 574px;
+            }
+            
+           
+            
+        }
+}
+.poster {
+
+		&__title {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 1.16;
+            text-transform: uppercase;
+
+            color: #000000;
+            // margin-left: 85px;
+		}
+
+		&__genre {
+            color: rgba(255, 107, 8, 1);
+            // margin-left: 85px;
+		}
+
+		&__year {
+            padding-left: 5px;
+            border-left: 1px solid  rgba(255, 107, 8, 1);
+		}
+}
+.film-list {
+
+		&__poster {
+		}
+}
