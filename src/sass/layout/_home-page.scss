@@ -4,32 +4,6 @@
     padding-bottom: 40px;
     
 }
-// @media screen and (min-width: 480px){
-//     .films-list{
-//         display: flex;
-//         gap: 32px;
-//         flex-wrap: wrap;
-//         &__image{
-//             width: 335px;
-//             height: 455px;
-
-//         }
-//     }
-// }
-// @media screen and (min-width: 768px) {
-//     .films-list{
-//         display: flex;
-//         gap: 16px;
-//         flex-wrap: wrap;
-//         &__image{
-//             width: 395px;
-//             height: 574px;
-
-//         }
-//     }
-    
-// }
-
 .films-list {
     display: flex;
     flex-direction: column;
@@ -54,32 +28,13 @@
            
           
         }
-
-		&__item + .poster{
-            // margin-bottom: 20px;
-            // @include adaptive(mobile){
-            //     margin-top: 0px;
-            // }
-
-		}
-
-		&__link {
-            
-		}
         &__image-wrapper{
             margin: 0 auto;
             margin-bottom: 10px;
             border-radius: 5px;
             overflow: hidden;
-            
-            
-            
-
-
         }
-        &__context-wrapper{
-           
-        }
+     
         &__image{
            
             width: 280px;
@@ -92,8 +47,6 @@
                 width: 394px;
                 height: 574px;
             }
-            
-           
             
         }
 }
@@ -108,21 +61,16 @@
             text-transform: uppercase;
 
             color: var(--text-color-secondary);
-            // margin-left: 85px;
+            
 		}
 
 		&__genre {
             color: var(--accent-color-main);
-            // margin-left: 85px;
+           
 		}
 
 		&__year {
             padding-left: 5px;
             border-left: 1px solid var(--accent-color-main);
-		}
-}
-.film-list {
-
-		&__poster {
 		}
 }
