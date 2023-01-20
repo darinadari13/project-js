@@ -1,24 +1,56 @@
-button {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  cursor: pointer;
-  color: inherit;
-  background-color: inherit;
-  padding: 0;
-  margin: 0;
+// COMMON
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body {
+  //   cursor: url('../images/cursor.svg'), auto;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+// SPECIAL
+
+.film-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .film-modal {
+  overflow-y: auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
   font-family: Roboto, sans-serif;
+
   padding: 48px 20px 40px;
   max-width: 95%;
-  height: auto;
+  height: 100vh;
+  background-color: var(--bg-color-main);
   border: 1px solid var(--text-color-modal);
   border-radius: 3px;
-  margin: 0 auto;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms ease, opacity 250ms ease;
+
+  .film-modal-backdrop.is-hidden & {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
   @include adaptive(tablet) {
-    padding: 40px 72px 40px 36px;
+    overflow: hidden;
+    max-width: 704px;
+    height: auto;
   }
   @include adaptive(desktop) {
     padding: 40px 12px;
@@ -30,6 +62,7 @@ button {
 .film-modal-close {
   display: block;
   border: none;
+  background-color: transparent;
   margin-left: auto;
   margin-top: -40px;
   margin-right: -12px;
@@ -37,7 +70,7 @@ button {
 
   @include adaptive(tablet) {
     margin-top: -32px;
-    margin-right: -56px;
+    margin-right: -10px;
     margin-bottom: 0;
   }
   @include adaptive(desktop) {
@@ -86,9 +119,7 @@ button {
     transform: scale(1.02);
   }
   @include adaptive(desktop) {
-    //  opacity: 0.75;
     height: 478px;
-    //  width: 375px;
   }
 }
 
@@ -120,12 +151,10 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  //   margin-bottom: 8px;
   &:first-child {
     color: var(--text-color-modal);
     & .film-modal-stats-value {
       & span {
-        display: inline-block;
         line-height: 1.67; /* 14/12 */
         &:first-child {
           color: var(--text-color-main);
@@ -174,12 +203,13 @@ button {
 .film-modal-actions {
   display: flex;
   gap: 15px;
-  //   @include adaptive(desktop) {
-  //     gap: 15px;
-  //   }
 }
 
 .film-modal-btn-action {
+  font-family: inherit;
+
+  cursor: pointer;
+
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33; /* 16/12 */
@@ -193,7 +223,7 @@ button {
   color: var(--text-color-main);
   background-color: var(--accent-color-main);
   border: 1px solid transparent;
-  transition: color, background-color, 250ms ease;
+  transition: color 250ms ease, background-color, 250ms ease;
   &:hover,
   &:focus {
     color: var(--accent-color-main);
@@ -230,3 +260,14 @@ button {
 //   border: 1px solid $accent-color;
 //   width: 5px;
 // }
+
+// test style for link
+.js-film-modal-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 400px;
+  background-color: orangered;
+  text-transform: uppercase;
+}
