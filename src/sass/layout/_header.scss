@@ -175,6 +175,8 @@
   font-size: 14px;
   line-height: 1.14;
   color: var(--text-color-main);
+  transition: border-bottom var(--time) var(--cubic),
+    color var(--time) var(--cubic), fill var(--time) var(--cubic);
   @include adaptive(tablet) {
     width: 336px;
   }
@@ -199,15 +201,10 @@
     color: var(--text-color-main);
   }
 
-  &__btn {
-    background-color: transparent;
-    border: none;
-    margin-left: -20px;
-  }
-
   &__icon {
     width: 12px;
     height: 12px;
+    margin-left: -15px;
     fill: var(--text-color-main);
 
     &:hover,
