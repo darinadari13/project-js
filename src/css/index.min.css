@@ -1,0 +1,160 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    width: 480px;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 734px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1246px;
+  }
+}
+:root {
+  --accent-color-main: #ff6b08;
+  --accent-color-secondary: #ff001b;
+  --bg-color-main: #ffffff;
+  --bg-color-header: #f7f7f7;
+  --text-color-main: #ffffff;
+  --text-color-secondary: #000000;
+  --text-color-warning: #ff001b;
+  --text-color-header: #545454;
+  --text-color-modal: #8c8c8c;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --time: 250ms;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.films-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+@media screen and (min-width: 768px) {
+  .films-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 32px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .films-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 16px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+.films-list__item {
+  margin: 0 auto;
+}
+@media screen and (min-width: 1200px) {
+  .films-list__item {
+    margin: 0;
+  }
+}
+.films-list__image-wrapper {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.films-list__image {
+  width: 280px;
+  height: 420px;
+}
+@media screen and (min-width: 768px) {
+  .films-list__image {
+    width: 335px;
+    height: 455px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .films-list__image {
+    width: 394px;
+    height: 574px;
+  }
+}
+
+.poster__title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+  text-transform: uppercase;
+  color: var(--text-color-secondary);
+}
+.poster__genre {
+  color: var(--accent-color-main);
+}
+.poster__year {
+  padding-left: 5px;
+  border-left: 1px solid var(--accent-color-main);
+}

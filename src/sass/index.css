@@ -35,13 +35,19 @@ a {
   color: inherit;
 }
 
+body {
+  font-family: Roboto, sans-serif;
+}
+
 .container {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 @media screen and (min-width: 480px) {
   .container {
+    padding-left: 20px;
+    padding-right: 20px;
     width: 480px;
     margin: 0 auto;
   }
