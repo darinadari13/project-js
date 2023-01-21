@@ -1,12 +1,12 @@
 //import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import * as basicLightbox from 'basiclightbox';
-
+import sprite from '../../images/icons.svg';
 const markupTeam = `
 		<div class="modal-team">
             <div class="team-card">
                 <a href="https://github.com/" target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                        <use href="./images/icons.svg#icon-github"></use>
+                        <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">Dari</p>
@@ -18,7 +18,7 @@ const markupTeam = `
             <div class="team-card">
                 <a href="https://github.com/" target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                        <use href="./images/icons.svg#icon-github"></use>
+                        <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">Nadin</p>
@@ -29,7 +29,7 @@ const markupTeam = `
             <div class="team-card">
                 <a href="https://github.com/ target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                          <use href="./images/icons.svg#icon-github"></use>
+                         <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">Iryna</p>
@@ -41,7 +41,7 @@ const markupTeam = `
             <div class="team-card">
                 <a href="https://github.com/" target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                        <use href="./images/icons.svg#icon-github"></use>
+                         <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">Yuliia</p>
@@ -52,7 +52,7 @@ const markupTeam = `
             <div class="team-card">
                 <a href="https://github.com/" target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                       <use href="./images/icons.svg#icon-github"></use>
+                        <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">NATALIA</p>
@@ -62,7 +62,7 @@ const markupTeam = `
             <div class="team-card">
                 <a href="https://github.com/" target="_blank" class="team-git">
                     <svg class="icon-github" width="50" height="50">
-                        <use href="./images/icons.svg#icon-github"></use>
+                      <use href="${sprite}#icon-github"></use>
                     </svg>
                 </a>
                 <p class="team-name">Yuliia</p>
