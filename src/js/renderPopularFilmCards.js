@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce';
-import { TheMovieDbAPI } from './theMovieDbAPi';
+import { TheMovieDbAPI } from './theMovieDbAPI';
 
 const theMovieDbAPI = new TheMovieDbAPI();
 
