@@ -390,6 +390,25 @@ body {
   border-left: 1px solid var(--accent-color-main);
 }
 
+.footer {
+  display: flex;
+  height: 79px;
+  background-color: #E5E5E5;
+  align-items: center;
+  justify-content: center;
+}
+.footer__text {
+  color: #545454;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+.footer__heart {
+  height: 15px;
+  width: 14px;
+  fill: #FF6B08;
+}
+
 .is-hidden {
   visibility: hidden;
   opacity: 0;
