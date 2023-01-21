@@ -7,6 +7,9 @@ refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
 function onFilmCardClick(e) {
   e.preventDefault();
+  if (e.target === e.currentTarget) {
+    return;
+  }
 
   refs.filmModal.classList.remove('is-hidden');
 
