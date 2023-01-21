@@ -1,6 +1,12 @@
 .basicLightbox {
-    overflow: scroll;
+    z-index: 1000;
+    position: fixed;
+    top: 62px;
+    right: 245px;
+    will-change: opacity;
+    z-index: 1000;
 }
+
 
 .modal-team {
     display: flex;
@@ -143,3 +149,4 @@
 p {
     text-align: center;
 }
+
