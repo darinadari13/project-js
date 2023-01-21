@@ -26,14 +26,7 @@ async function renderPopularFilmCards(response) {
 
     const markup = filmArr
       .map(film => {
-        const {
-          id,
-          title,
-          poster_path,
-          release_date,
-          vote_average,
-          genre_ids,
-        } = film;
+        const { id, title, poster_path, release_date, genre_ids } = film;
 
         const newArr = [];
         for (const el of genresArr) {
@@ -54,13 +47,13 @@ async function renderPopularFilmCards(response) {
                 class="films-list__image"
               />
             </div>
+				<div class="poster__info">
             <h2 class="poster__title">${title.toUpperCase()}</h2>
             <p class="poster__genre">
 				<span class="poster__genres">${filmGenres}</span>
               <span class="poster__year">${parseInt(release_date)} </span>
-			  <span class="poster__rating">${vote_average.toFixed(1)}</span>
-
             </p>
+				</div>
           </a>
         </li>`;
       })
