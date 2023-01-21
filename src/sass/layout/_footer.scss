@@ -1,0 +1,19 @@
+.footer{
+    display: flex;
+    height: 79px;
+    background-color: #E5E5E5;
+    align-items: center;
+    justify-content: center; 
+    
+    &__text{
+     color: #545454;
+     font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    }
+    &__heart{
+        height: 15px;
+    width: 14px;
+    fill: #FF6B08;
+    }
+}
