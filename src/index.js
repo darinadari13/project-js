@@ -1,5 +1,8 @@
 import './js/header';
-import './js/requestAPI';
+import './js/theMovieDbAPI';
+import './js/renderPopularFilmCards';
+import './js/teamModal';
+// import './js/requestAPI';
 import './js/home-page';
 import './js/my-library';
 import './js/footer';
