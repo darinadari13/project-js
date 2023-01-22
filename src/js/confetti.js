@@ -14,7 +14,10 @@ class ConfettiButton extends HTMLElement {
     }
 }
 
+
 customElements.define('confetti-button', ConfettiButton);
 
 
-// cb
+
+customElements.define('confetti-button', ConfettiButton);
+
