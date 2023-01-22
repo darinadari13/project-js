@@ -40,7 +40,7 @@ body {
   border-radius: 3px;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 250ms ease, opacity 250ms ease;
+  transition: transform 400ms ease, opacity 250ms ease;
 
   .film-modal-backdrop.is-hidden & {
     opacity: 0;
