@@ -2,6 +2,7 @@ import './js/header';
 import './js/theMovieDbAPI';
 import './js/renderPopularFilmCards';
 import './js/teamModal';
+import './js/confetti';
 // import './js/requestAPI';
 import './js/home-page';
 import './js/my-library';

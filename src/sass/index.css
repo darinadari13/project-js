@@ -325,40 +325,53 @@ body {
 .films-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 @media screen and (min-width: 768px) {
   .films-list {
-    display: flex;
     flex-direction: row;
-    gap: 32px;
-    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 32x;
+    -moz-column-gap: 32px;
+         column-gap: 32px;
   }
 }
 @media screen and (min-width: 1200px) {
   .films-list {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    row-gap: 32px;
+    -moz-column-gap: 16px;
+         column-gap: 16px;
   }
 }
 .films-list__item {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
+  width: 280px;
+  border-radius: 5px;
+}
+@media screen and (min-width: 768px) {
+  .films-list__item {
+    width: 335px;
+  }
 }
 @media screen and (min-width: 1200px) {
   .films-list__item {
-    margin: 0;
+    width: 395px;
   }
 }
+.films-list__item:hover, .films-list__item:focus {
+  box-shadow: 2px 2px 7px 5px rgba(0, 0, 0, 0.5);
+}
 .films-list__image-wrapper {
-  margin: 0 auto;
-  margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
 }
 .films-list__image {
   width: 280px;
   height: 420px;
+  transition: transform 250ms ease;
 }
 @media screen and (min-width: 768px) {
   .films-list__image {
@@ -368,11 +381,22 @@ body {
 }
 @media screen and (min-width: 1200px) {
   .films-list__image {
-    width: 394px;
+    width: 395px;
     height: 574px;
   }
 }
+.films-list__image:hover, .films-list__image:focus {
+  transform: scale(1.08);
+}
 
+.poster__info {
+  padding: 8px;
+}
+@media screen and (min-width: 1200px) {
+  .poster__info {
+    padding: 12px;
+  }
+}
 .poster__title {
   font-family: "Roboto";
   font-style: normal;
@@ -382,12 +406,29 @@ body {
   text-transform: uppercase;
   color: var(--text-color-secondary);
 }
+@media screen and (min-width: 1200px) {
+  .poster__title {
+    font-size: 20px;
+    line-height: 1.2; /* 24/20 */
+  }
+}
 .poster__genre {
+  text-align: left;
   color: var(--accent-color-main);
 }
+.poster__genres::after {
+  position: relative;
+  top: 2px;
+  left: 3px;
+  display: inline-block;
+  content: "";
+  width: 1px;
+  height: 14px;
+  background-color: var(--accent-color-main);
+  margin-left: 5px;
+}
 .poster__year {
-  padding-left: 5px;
-  border-left: 1px solid var(--accent-color-main);
+  margin-left: 5px;
 }
 
 .footer {
@@ -410,10 +451,12 @@ body {
 }
 
 .basicLightbox {
-  z-index: 1000;
+  z-index: 1;
   position: fixed;
-  top: 120px px;
-  right: 245px;
+  top: 62px;
+  right: 280px;
+  will-change: opacity;
+  z-index: 1000;
 }
 
 .modal-team {
@@ -448,6 +491,33 @@ body {
   transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1);
   transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  border-radius: 53% 47% 52% 48%/30% 30% 70% 70%;
+  width: calc((100% - 80px) / 2);
+  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.2509803922), 0 30px 60px -30px #20a1d8, inset 0 -2px 6px rgba(10, 37, 64, 0.3490196078);
+  transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.team-card:hover {
+  box-shadow: rgba(250, 95, 5, 0.25) 0px 50px 100px -20px, rgba(218, 22, 22, 0.3) 0px 30px 60px -30px, rgba(247, 30, 30, 0.35) 0px -2px 6px 0px inset;
+  transform: scale(1.15);
+}
+@media screen and (min-width: 767px) {
+  .team-card {
+    width: calc((100% - 160px) / 4);
+    border-radius: 20px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .team-card {
+    margin: 30px;
+    border-radius: 30px;
+    width: calc((100% - 240px) / 4);
+  }
 }
 .team-card:hover {
   box-shadow: rgba(250, 95, 5, 0.25) 0px 50px 100px -20px, rgba(218, 22, 22, 0.3) 0px 30px 60px -30px, rgba(247, 30, 30, 0.35) 0px -2px 6px 0px inset;
@@ -529,6 +599,7 @@ body {
   position: absolute;
   top: 47%;
   right: 50%;
+  text-align: center;
   font-family: "Inter";
   font-style: italic;
   font-weight: 524;
@@ -551,8 +622,55 @@ body {
   }
 }
 
-p {
-  text-align: center;
+.title-team {
+  position: absolute;
+  top: 47%;
+  right: 50%;
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 524;
+  font-size: 30px;
+  line-height: 39px;
+  color: rgba(158, 157, 157, 0.767);
+  font-variation-settings: "slnt" -10;
+  text-shadow: 0 1px 6px orange;
+}
+@media screen and (min-width: 767px) {
+  .title-team {
+    top: 45%;
+    right: 35%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .title-team {
+    top: 44%;
+    right: 37%;
+  }
+}
+
+.confetti-button {
+  background-color: #404663;
+  color: #fff;
+  border: 0;
+  top: 231px;
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 4px;
+  border-radius: 0.5em;
+  z-index: 999;
+  position: absolute;
+  display: flex;
+  gap: 2px;
+  left: 71px;
+  box-shadow: 0px 1.7px 2.2px rgba(0, 0, 0, 0.02), 0px 4px 5.3px rgba(0, 0, 0, 0.028), 0px 7.5px 10px rgba(0, 0, 0, 0.035), 0px 13.4px 17.9px rgba(0, 0, 0, 0.042), 0px 25.1px 33.4px rgba(0, 0, 0, 0.05), 0px 60px 80px rgba(0, 0, 0, 0.07);
+}
+
+.confetti-button:active {
+  z-index: 3;
+}
+
+.bavovna_title {
+  color: #fb8e32;
 }
 
 .is-hidden {
