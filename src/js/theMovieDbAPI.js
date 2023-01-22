@@ -47,6 +47,8 @@ export class TheMovieDbAPI {
     const response = await axios.get(
       `${TheMovieDbAPI.BASE_URL}/movie/${id}?${TheMovieDbAPI.API_KEY}`
     );
+
     return response;
+
   }
 }

@@ -29,7 +29,7 @@ const onSearchFormSubmit = async event => {
       if (filmArr.length === 0) {
         message.innerHTML =
           'Search result not successful. Enter the correct movie name.';
-       
+
         filmListElem.innerHTML = '';
         renderPopularFilmCards();
         return;
@@ -46,7 +46,7 @@ const onSearchFormSubmit = async event => {
   }
 };
 
-searchFormEl.addEventListener(
+searchFormEl && searchFormEl.addEventListener(
   'input',
   debounce(onSearchFormSubmit, DEBOUNCE_DELAY)
 );

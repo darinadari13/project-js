@@ -17,10 +17,10 @@ async function onFilmCardClick(e) {
   }
 
   const filmLinkEl = e.target.closest('a.films-list__link');
-  const filmID = filmLinkEl.id;
+  const movieId = filmLinkEl.dataset.movieId;
 
   try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(filmID);
+    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
     const {
       poster_path,
       title,
@@ -36,9 +36,8 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
-      TheMovieDbAPI.IMG_URL + poster_path
-    } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
+      } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -47,8 +46,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-                  1
-                )}</span> / <span>${vote_count}</span>
+        1
+      )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -71,10 +70,10 @@ async function onFilmCardClick(e) {
             </p>
           </div>
           <div class="film-modal-actions">
-            <button type="submit" class="film-modal-btn-action accent">
+            <button type="submit" class="film-modal-btn-action accent" data-movie-id="${movieId}">
               add to Watched
             </button>
-            <button type="submit" class="film-modal-btn-action transparent">
+            <button type="submit" class="film-modal-btn-action transparent" data-movie-id="${movieId}">
               add to queue
             </button>
           </div>
@@ -90,6 +89,12 @@ async function onFilmCardClick(e) {
   refs.closeModalBtn.addEventListener('click', onCloseModalBtn);
   refs.filmModal.addEventListener('click', onCloseModalBtn);
   document.addEventListener('keydown', onEscKeyBtnPress);
+
+  const addToWatchlistBtn = document.querySelector('.film-modal .film-modal-btn-action.accent')
+  const addToQueuelistBtn = document.querySelector('.film-modal .film-modal-btn-action.transparent')
+
+  addToWatchlistBtn.addEventListener('click', onAddToWatchedBtnClick)
+  addToQueuelistBtn.addEventListener('click', onAddToQueueBtnClick)
 }
 
 function onCloseModalBtn(e) {
@@ -105,5 +110,41 @@ function onCloseModalBtn(e) {
 function onEscKeyBtnPress(e) {
   if (e.code === 'Escape') {
     onCloseModalBtn();
+  }
+}
+
+
+
+async function onAddToWatchedBtnClick(e) {
+  e.preventDefault();
+
+  const movieId = e.target.dataset.movieId;
+
+  try {
+    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+    const watchedFilms = JSON.parse(localStorage.getItem("watched") || '[]');
+    watchedFilms.push(data);
+
+    localStorage.setItem("watched", JSON.stringify(watchedFilms));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function onAddToQueueBtnClick(e) {
+  e.preventDefault();
+
+  const movieId = e.target.dataset.movieId;
+
+  try {
+    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+    const watchedFilms = JSON.parse(localStorage.getItem("queue") || '[]');
+    watchedFilms.push(data);
+
+    localStorage.setItem("queue", JSON.stringify(watchedFilms));
+  } catch (err) {
+    console.log(err);
   }
 }

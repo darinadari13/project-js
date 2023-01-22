@@ -13,7 +13,7 @@ export async function renderGenresArr(response) {
       data: { genres },
     } = await theMovieDbAPI.getGenres(response);
     genresArr = [...genres];
-  } catch (err) {}
+  } catch (err) { }
 }
 
 renderGenresArr();
@@ -66,7 +66,7 @@ renderGenresArr();
 
 // renderPopularFilmCards();
 
- export async function renderPopularFilmCards(response) {
+export async function renderPopularFilmCards(response) {
   try {
     const {
       data: { results: filmArr },
@@ -78,22 +78,22 @@ renderGenresArr();
   }
 }
 
-export function renderMarkup(arr) { 
-    
+export function renderMarkup(arr) {
+
   const markup = arr
-      .map(film => {
-        const { id, title, poster_path, release_date, genre_ids } = film;
+    .map(film => {
+      const { id, title, poster_path, release_date, genre_ids } = film;
 
-        const newArr = [];
-        for (const el of genresArr) {
-          if (genre_ids.includes(el.id)) {
-            newArr.push(el.name);
-          }
+      const newArr = [];
+      for (const el of genresArr) {
+        if (genre_ids.includes(el.id)) {
+          newArr.push(el.name);
         }
-        const filmGenres = newArr.join(', ');
+      }
+      const filmGenres = newArr.join(', ');
 
-        return `<li class="films-list__item poster">
-          <a href="#" class="films-list__link" id ="${id}">
+      return `<li class="films-list__item poster">
+          <a href="#" class="films-list__link" data-movie-id="${id}">
             <div class="films-list__image-wrapper">
               <img
                 width="280"
@@ -112,10 +112,10 @@ export function renderMarkup(arr) {
 				</div>
           </a>
         </li>`;
-      })
-      .join('');
-  
-   setTimeout(() => {
+    })
+    .join('');
+
+  setTimeout(() => {
     filmListElem.innerHTML = markup;
   }, 200);
 }
