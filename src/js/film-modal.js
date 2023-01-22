@@ -15,7 +15,6 @@ async function onFilmCardClick(e) {
   if (e.target === e.currentTarget) {
     return;
   }
-  refs.filmModal.classList.remove('is-hidden');
 
   const filmLinkEl = e.target.closest('a.films-list__link');
   const filmID = filmLinkEl.id;
@@ -85,6 +84,8 @@ async function onFilmCardClick(e) {
   } catch (err) {
     console.log(err);
   }
+
+  refs.filmModal.classList.remove('is-hidden');
 
   refs.closeModalBtn.addEventListener('click', onCloseModalBtn);
   refs.filmModal.addEventListener('click', onCloseModalBtn);
