@@ -87,9 +87,10 @@ function renderMovies(films, genres) {
               
                 <span class="poster__genres">${filmGenres}</span>
                 <span class="poster__year">${parseInt(release_date)} </span>
+                <span class="vote_container">
                 <span class="poster__vote">${vote_average.toFixed(
         1
-      )}</span>
+      )}</span></span>
               </p>
           </div>
           </a>
