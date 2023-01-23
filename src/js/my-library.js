@@ -43,14 +43,14 @@ function createPaginationIfRequired(totalFilms) {
   });
   instance.on('afterMove', (event) => {
     const currentPage = event.page;
-    if (watchedBtn.classList.contains('btn-active')) {
-      renderMoviesList('watched', currentPage);
-    } else if (queueBtn.classList.contains('btn-active')) {
+   if(watchedBtn.classList.contains('btn-activ')) {
+    renderMoviesList('watched', currentPage);
+   }
+    else if(queueBtn.classList.contains('btn-activ')){
       renderMoviesList('queue', currentPage);
     }
-
-
-  });
+   
+    });
 };
 
 
@@ -115,10 +115,30 @@ function renderMoviesList(type, page = 1) {
   })
   let totalFilms = films.length;
   if (totalFilms > 20) {
-    createPaginationIfRequired(totalFilms);
+    setTimeout(()=>{
+      
+      createPaginationIfRequired(totalFilms);
+    }, 1500);
+    
+  } else{
+    return;
   }
 
 }
+// function makePaginationOnQueue (){
+//   const queueFilms = JSON.parse(localStorage.getItem('queue') || '[]');{
+//     let totalFilms = queueFilms.length;
+//     if (totalFilms > 20) {
+//       setTimeout(()=>{
+        
+//         createPaginationIfRequired(totalFilms);
+//       }, 1500);
+      
+//     }
+//   }
+// }
+// makePaginationOnQueue ();
+
 
 watchedBtn && watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
 queueBtn && queueBtn.addEventListener('click', () => renderMoviesList('queue'));
