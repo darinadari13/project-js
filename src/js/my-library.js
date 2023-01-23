@@ -1,10 +1,52 @@
 import { TheMovieDbAPI } from './theMovieDbAPI';
-
+import Pagination from 'tui-pagination';
 const theMovieDbAPI = new TheMovieDbAPI();
+
 
 const filmListElem = document.querySelector('.films-list');
 const watchedBtn = document.querySelector('#watched');
 const queueBtn = document.querySelector('#queue');
+const container = document.getElementById('tui-pagination-container');
+
+
+
+let instance =  null;
+function createPaginationIfRequired(totalFilms){ 
+  if(instance) return;
+ instance = new Pagination(container, { 
+  totalItems: totalFilms,
+  itemsPerPage: 20,
+  visiblePages: 10,
+  page: 1 ,
+  centerAlign: false,
+  usageStatistics: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>'
+  }
+
+ });
+ instance.on('afterMove', (event) => {
+  const currentPage = event.page;
+  renderMoviesList('watched');
+  renderMoviesList('queue');
+});
+};
 
 const genresPromise = theMovieDbAPI.getGenres()
 
@@ -53,9 +95,20 @@ function renderMoviesList(type) {
   genresPromise.then(({ data }) => {
     renderMovies(films, data.genres)
   })
+  let totalFilms = films.length ; 
+  if (totalFilms > 20){
+    createPaginationIfRequired(totalFilms);
+  }
+  
 }
 
 watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
 queueBtn.addEventListener('click', () => renderMoviesList('queue'))
 
 renderMoviesList('watched')
+
+
+
+
+
+

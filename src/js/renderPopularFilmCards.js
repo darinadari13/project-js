@@ -20,6 +20,7 @@ function createPaginationIfRequired(totalItems){
   usageStatistics: false,
   firstItemClassName: 'tui-first-child',
   lastItemClassName: 'tui-last-child',
+  
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
