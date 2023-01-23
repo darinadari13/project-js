@@ -6,6 +6,8 @@ import './js/film-modal';
 import './js/home-page';
 // import './js/my-library';
 import './js/footer';
-import './js/teamModal';
+import './js/film-modal';
 import './js/preloader'
-import './js/preloaderBtn'import './js/confetti';
+import './js/preloaderBtn'
+import './js/teamModal';
+import './js/confetti';
