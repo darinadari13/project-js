@@ -16,6 +16,7 @@
   @include adaptive(desktop) {
     row-gap: 32px;
     column-gap: 16px;
+    justify-content: flex-start;
   }
 
   &__item {
@@ -29,6 +30,7 @@
     }
     @include adaptive(desktop) {
       width: 395px;
+      margin: 0;
     }
     &:hover,
     &:focus {
@@ -100,3 +102,21 @@
     margin-left: 5px;
   }
 }
+
+.tui-pagination{
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.tui-is-selected{
+    width: 40px;
+    height: 40px;
+    padding: 13px;
+    background-color: var(--accent-color-main);
+    color: var(--bg-color-main);
+}
+.tui-page-btn + .tui-page-btn{
+    margin-left: 5px;
+}
+

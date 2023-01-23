@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export class TheMovieDbAPI {
   static BASE_URL = 'https://api.themoviedb.org/3';
-  static API_KEY = 'api_key=1deae1a36202e3ac8c29219a3d453e0f';
+  static API_KEY = '1deae1a36202e3ac8c29219a3d453e0f';
   static IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
   constructor() {
@@ -11,16 +11,24 @@ export class TheMovieDbAPI {
     this.per_page = 20;
   }
 
-  async getPopularFilms() {
+  async getPopularFilms(pageNumber) {
+    this.page = pageNumber;
     const response = await axios.get(
-      `${TheMovieDbAPI.BASE_URL}/trending/movie/week?${TheMovieDbAPI.API_KEY}`
+      `${TheMovieDbAPI.BASE_URL}/trending/movie/week`,
+      {params:{
+        api_key: TheMovieDbAPI.API_KEY,
+        page: this.page
+      }}
     );
     return response;
   }
 
   async getGenres() {
     const response = await axios.get(
-      `${TheMovieDbAPI.BASE_URL}/genre/movie/list?${TheMovieDbAPI.API_KEY}`
+      `${TheMovieDbAPI.BASE_URL}/genre/movie/list`,
+      {params:{
+        api_key: TheMovieDbAPI.API_KEY  
+      }}
     );
     return response;
   }

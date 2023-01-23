@@ -1,9 +1,32 @@
 import debounce from 'lodash.debounce';
 import { TheMovieDbAPI } from './theMovieDbAPI';
+import Pagination from 'tui-pagination';
 
 const theMovieDbAPI = new TheMovieDbAPI();
 
 const filmListElem = document.querySelector('.films-list');
+const container = document.getElementById('tui-pagination-container');
+
+
+let instance =  null;
+function createPaginationIfRequired(totalItems){ 
+  if(instance) return;
+ instance = new Pagination(container, { 
+  totalItems: totalItems,
+  itemsPerPage: 20,
+  visiblePages: 10,
+  page: 1 ,
+  centerAlign: false,
+  usageStatistics: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+
+ });
+ instance.on('afterMove', (event) => {
+  const currentPage = event.page;
+  renderPopularFilmCards(currentPage);
+});
+};
 
 let genresArr = [];
 
@@ -66,17 +89,19 @@ renderGenresArr();
 
 // renderPopularFilmCards();
 
-export async function renderPopularFilmCards(response) {
+export async function renderPopularFilmCards(pageInitialNumber = 1) {
   try {
     const {
-      data: { results: filmArr },
-    } = await theMovieDbAPI.getPopularFilms(response);
+      data: { results: filmArr, total_results },
+    } = await theMovieDbAPI.getPopularFilms(pageInitialNumber);
+    createPaginationIfRequired(total_results);
     renderMarkup(filmArr);
 
   } catch (err) {
     console.log(err);
   }
 }
+
 
 export function renderMarkup(arr) {
 
