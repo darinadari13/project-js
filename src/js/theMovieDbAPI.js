@@ -40,12 +40,13 @@ export class TheMovieDbAPI {
         language: 'en-US',
         page: this.page,
         query: this.query,
+        api_key: TheMovieDbAPI.API_KEY
         
       },
     };
 
     const response = await axios.get(
-      `${TheMovieDbAPI.BASE_URL}/search/movie?${TheMovieDbAPI.API_KEY}`,
+      `${TheMovieDbAPI.BASE_URL}/search/movie`,
       searchParams
     );
 

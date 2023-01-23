@@ -119,4 +119,33 @@
 .tui-page-btn + .tui-page-btn{
     margin-left: 5px;
 }
+.tui-page-btn-more > span{
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    background: url(../images/arrow-right.svg);
+    background-repeat: no-repeat;
+    
+    background-position: bottom;
+    display: inline-block;
+    
+  
+}
+.tui-page-btn-more .tui-ico-prev{
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+    background: url(../images/arrow-left.svg);
+    background-repeat: no-repeat;
+    
+    background-position: bottom;
+    display: inline-block;
 
+
+}
+.tui-page-btn-more.tui-last{
+    display: none;
+}
+.tui-page-btn.tui-first{
+    display: none;
+}
