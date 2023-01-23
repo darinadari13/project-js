@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { startSpin, stopSpin } from './preloaderBtn';
+
 
 export class TheMovieDbAPI {
   static BASE_URL = 'https://api.themoviedb.org/3';
@@ -12,6 +14,7 @@ export class TheMovieDbAPI {
   }
 
   async getPopularFilms(pageNumber) {
+  startSpin();
     this.page = pageNumber;
     const response = await axios.get(
       `${TheMovieDbAPI.BASE_URL}/trending/movie/week`,
@@ -22,6 +25,7 @@ export class TheMovieDbAPI {
         },
       }
     );
+    stopSpin();
     return response;
   }
 
@@ -38,6 +42,7 @@ export class TheMovieDbAPI {
   }
 
   async fetchUniqFilms(query) {
+    startSpin();
     const searchParams = {
       params: {
         language: 'en-US',
@@ -51,7 +56,7 @@ export class TheMovieDbAPI {
       `${TheMovieDbAPI.BASE_URL}/search/movie`,
       searchParams
     );
-
+stopSpin();
     return response;
     // https://api.themoviedb.org/3/search/movie?api_key=1deae1a36202e3ac8c29219a3d453e0f&language=en-US&page=1&query=love
   }
