@@ -6,18 +6,16 @@ const filmListElem = document.querySelector('.films-list');
 const watchedBtn = document.querySelector('#watched');
 const queueBtn = document.querySelector('#queue');
 
-const genresPromise = theMovieDbAPI.getGenres()
+const genresPromise = theMovieDbAPI.getGenres();
 
 function renderMovies(films, genres) {
   const markup = films
     .map(film => {
       const { id, title, poster_path, release_date, genre_ids } = film;
 
-      console.log(genres, genre_ids);
-
       const filmGenres = genres
         .filter(genre => genre_ids && genre_ids.includes(genre.id))
-        .join(', ')
+        .join(', ');
 
       return `
         <li class="films-list__item poster">
@@ -47,15 +45,23 @@ function renderMovies(films, genres) {
   filmListElem.innerHTML = markup;
 }
 
-function renderMoviesList(type) {
+export function renderMoviesList(type) {
   const films = JSON.parse(localStorage.getItem(type) || '[]');
 
   genresPromise.then(({ data }) => {
-    renderMovies(films, data.genres)
-  })
+    renderMovies(films, data.genres);
+  });
 }
 
-watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
-queueBtn.addEventListener('click', () => renderMoviesList('queue'))
+watchedBtn.addEventListener('click', () => {
+  renderMoviesList('watched');
+  queueBtn.classList.remove('btn-activ');
+  watchedBtn.classList.add('btn-activ');
+});
+queueBtn.addEventListener('click', () => {
+  renderMoviesList('queue');
+  watchedBtn.classList.remove('btn-activ');
+  queueBtn.classList.add('btn-activ');
+});
 
-renderMoviesList('watched')
+renderMoviesList('watched');

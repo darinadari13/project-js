@@ -57,54 +57,6 @@ export async function renderGenresArr(response) {
 
 renderGenresArr();
 
-// export async function renderPopularFilmCards(response) {
-//   try {
-//     const {
-//       data: { results: filmArr },
-//     } = await theMovieDbAPI.getPopularFilms(response);
-
-//     const markup = filmArr
-//       .map(film => {
-//         const { id, title, poster_path, release_date, genre_ids } = film;
-
-//         const newArr = [];
-//         for (const el of genresArr) {
-//           if (genre_ids.includes(el.id)) {
-//             newArr.push(el.name);
-//           }
-//         }
-//         const filmGenres = newArr.join(', ');
-
-//         return `<li class="films-list__item poster">
-//           <a href="#" class="films-list__link" id ="${id}">
-//             <div class="films-list__image-wrapper">
-//               <img
-//                 width="280"
-//                 height="420"
-//                 src="${TheMovieDbAPI.IMG_URL + poster_path}"
-//                 alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path} movie"
-//                 class="films-list__image"
-//               />
-//             </div>
-// 				<div class="poster__info">
-//             <h2 class="poster__title">${title.toUpperCase()}</h2>
-//             <p class="poster__genre">
-// 				<span class="poster__genres">${filmGenres}</span>
-//               <span class="poster__year">${parseInt(release_date)} </span>
-//             </p>
-// 				</div>
-//           </a>
-//         </li>`;
-//       })
-//       .join('');
-//     filmListElem.insertAdjacentHTML('beforeend', markup);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
-// renderPopularFilmCards();
-
 export async function renderPopularFilmCards(pageInitialNumber = 1) {
   try {
     const {
@@ -153,12 +105,17 @@ export function renderMarkup(arr) {
 				</div>
           </a>
         </li>`;
+      
+      
+      
+      
     })
-    .join('');
+    .join('');  
+  
 
   setTimeout(() => {
     filmListElem.innerHTML = markup;
-  }, 200);
+  }, 500);
 }
 
 renderPopularFilmCards();
