@@ -11,3 +11,4 @@ import './js/film-modal';
 import './js/preloaderBtn'
 import './js/teamModal';
 import './js/confetti';
+import 'lazysizes';
