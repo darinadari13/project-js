@@ -10,48 +10,7 @@ const container = document.getElementById('tui-pagination-container');
 
 
 
-let instance =  null;
-function createPaginationIfRequired(totalFilms){ 
-  if(instance) return;
- instance = new Pagination(container, { 
-  totalItems: totalFilms,
-  itemsPerPage: 20,
-  visiblePages: 10,
-  page: 1 ,
-  centerAlign: false,
-  usageStatistics: false,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
-      '</a>'
-  }
 
- });
- instance.on('afterMove', (event) => {
-  const currentPage = event.page;
-  if(watchedBtn.classList.contains('btn-active')){
-    renderMoviesList('watched', currentPage);
-  } else if(queueBtn.classList.contains('btn-active')){
-    renderMoviesList('queue', currentPage);
-  }
- 
-  
-});
-};
 
 const genresPromise = theMovieDbAPI.getGenres()
 
@@ -94,18 +53,64 @@ function renderMovies(films, genres) {
   filmListElem.innerHTML = markup;
 }
 
+
 function renderMoviesList(type, page = 1) {
+  
   const films = JSON.parse(localStorage.getItem(type) || '[]');
   page--;
   genresPromise.then(({ data }) => {
-    renderMovies(films.slice(page*20, (page + 1 ) * 20), data.genres)
-  })
-  let totalFilms = films.length ; 
-  if (totalFilms > 20){
-    createPaginationIfRequired(totalFilms);
-  }
-  
+    renderMovies(films.slice(page*20,(page + 1 )* 20), data.genres)
+    let totalFilms = films.length;
+    if (totalFilms > 20){
+     createPaginationIfRequired(totalFilms);
+   };
+
+});
+
 }
+
+
+let instance =  null;
+function createPaginationIfRequired(totalFilms){ 
+  if(instance) return;
+  instance = new Pagination(container, { 
+  totalItems: totalFilms,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  page: 1 ,
+  centerAlign: false,
+  usageStatistics: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+      '</a>'
+  }
+
+ });
+ instance.on('afterMove', (event) => {
+  const currentPage = event.page;
+  if (watchedBtn.classList.contains('btn-activ')){
+    renderMoviesList('watched', currentPage);
+  } else if (queueBtn.classList.contains('btn-activ')){
+     renderMoviesList('queue', currentPage);
+  }
+ 
+});
+};
 
 watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
 queueBtn.addEventListener('click', () => renderMoviesList('queue'))
