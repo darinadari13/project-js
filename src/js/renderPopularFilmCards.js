@@ -29,7 +29,7 @@ function createPaginationIfRequired(totalItems){
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '<span class="tui-ico-{{type}}"></span>' +
       '</span>',
     moreButton:
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
