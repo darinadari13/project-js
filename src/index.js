@@ -7,3 +7,5 @@ import './js/home-page';
 import './js/my-library';
 import './js/footer';
 import './js/film-modal';
+import './js/preloader'
+import './js/preloaderBtn'
