@@ -142,10 +142,9 @@ export function renderMarkup(arr) {
               <img
                 width="280"
                 height="420"
-                data-src="${TheMovieDbAPI.IMG_URL + poster_path}"
                 alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path} movie"
                 class="films-list__image lazyload"
-                src="https://strikesocial.com/wp-content/uploads/2018/10/STRIKE_BLOG_HERO_FACEBOOK-LOW-QUALITY.jpg"
+                src="${TheMovieDbAPI.IMG_URL + poster_path}"
               />
             </div>
 				<div class="poster__info">

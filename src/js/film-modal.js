@@ -124,16 +124,18 @@ async function onAddToWatchedBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+  const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-    const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
-    watchedFilms.push(data);
-
-    localStorage.setItem('watched', JSON.stringify(watchedFilms));
-  } catch (err) {
-    console.log(err);
+  if (films.some(film => film.id == movieId)) {
+    return alert('This film is already added to watchlist')
   }
+
+  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+
+  films.push(data);
+
+  localStorage.setItem('watched', JSON.stringify(films));
 }
 
 async function onAddToQueueBtnClick(e) {
@@ -141,14 +143,15 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+  const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-    const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
-    watchedFilms.push(data);
-
-    localStorage.setItem('queue', JSON.stringify(watchedFilms));
-  } catch (err) {
-    console.log(err);
+  if (films.some(film => film.id == movieId)) {
+    return alert('This film is already added to queue')
   }
+
+  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+  watchedFilms.push(data);
+
+  localStorage.setItem('queue', JSON.stringify(watchedFilms));
 }

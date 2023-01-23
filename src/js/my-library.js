@@ -61,12 +61,20 @@ const genresPromise = theMovieDbAPI.getGenres()
 function renderMovies(films, genres) {
   const markup = films
     .map(film => {
-      const { id, title, vote_average, poster_path, release_date, genre_ids } = film;
+      const { id, title, vote_average, poster_path, release_date, genres: filmGenres } = film;
 
-      console.log(genres, genre_ids);
+      // const newArr = [];
+      // for (const el of genresArr) {
+      //   if (genre_ids.includes(el.id)) {
+      //     newArr.push(el.name);
+      //   }
+      // }
+      // const filmGenres = newArr.join(', ');
 
-      const filmGenres = genres
-        .filter(genre => genre_ids && genre_ids.includes(genre.id))
+
+      const filmGenresString = genres
+        .filter(genre => filmGenres && filmGenres.some(filmGenre => filmGenre.id === genre.id))
+        .map(genre => genre.name)
         .join(', ')
 
       return `
@@ -85,12 +93,9 @@ function renderMovies(films, genres) {
               <h2 class="poster__title">${title.toUpperCase()}</h2>
               <p class="poster__genre">
               
-                <span class="poster__genres">${filmGenres}</span>
+                <span class="poster__genres">${filmGenresString}</span>
                 <span class="poster__year">${parseInt(release_date)} </span>
-                <span class="vote_container">
-                <span class="poster__vote">${vote_average.toFixed(
-        1
-      )}</span></span>
+                <span class="poster__vote">${vote_average.toFixed(1)}</span>
               </p>
           </div>
           </a>
@@ -115,8 +120,8 @@ function renderMoviesList(type, page = 1) {
 
 }
 
-watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
-queueBtn.addEventListener('click', () => renderMoviesList('queue'))
+watchedBtn && watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
+queueBtn && queueBtn.addEventListener('click', () => renderMoviesList('queue'));
 
 renderMoviesList('watched')
 
