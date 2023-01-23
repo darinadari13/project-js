@@ -18,10 +18,12 @@ export class TheMovieDbAPI {
     this.page = pageNumber;
     const response = await axios.get(
       `${TheMovieDbAPI.BASE_URL}/trending/movie/week`,
-      {params:{
-        api_key: TheMovieDbAPI.API_KEY,
-        page: this.page
-      }}
+      {
+        params: {
+          api_key: TheMovieDbAPI.API_KEY,
+          page: this.page,
+        },
+      }
     );
     // stopSpin();
     return response;
@@ -30,10 +32,11 @@ export class TheMovieDbAPI {
   async getGenres() {
     const response = await axios.get(
       `${TheMovieDbAPI.BASE_URL}/genre/movie/list`,
-      {params:{
-        api_key: TheMovieDbAPI.API_KEY,
-        
-      }}
+      {
+        params: {
+          api_key: TheMovieDbAPI.API_KEY,
+        },
+      }
     );
     return response;
   }
@@ -45,8 +48,7 @@ export class TheMovieDbAPI {
         language: 'en-US',
         page: this.page,
         query: this.query,
-        api_key: TheMovieDbAPI.API_KEY
-        
+        api_key: TheMovieDbAPI.API_KEY,
       },
     };
 
@@ -60,15 +62,12 @@ export class TheMovieDbAPI {
   }
 
   async getMovieInfoById(id) {
-    const response = await axios.get(
-      `${TheMovieDbAPI.BASE_URL}/movie/${id}?`,
-      {params:{
+    const response = await axios.get(`${TheMovieDbAPI.BASE_URL}/movie/${id}?`, {
+      params: {
         api_key: TheMovieDbAPI.API_KEY,
-        
-      }}
-    );
+      },
+    });
 
     return response;
-
   }
 }

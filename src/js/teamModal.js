@@ -10,9 +10,7 @@ const markupTeam = `
     
             <div class="team-card">
                 <a href="https://github.com/darinadari13" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                        <use href="${sprite}#icon-github"></use>
-                    </svg>
+                    <img class="image_team" src="https://i.ibb.co/3BTGp6S/photo-2023-01-23-17-15-42.jpg"   alt="Dari">
                 </a>
                 <p class="team-name">Dari</p>
                 <p class="team-role">Team Lead</p>
@@ -22,9 +20,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/Nadin-N" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                        <use href="${sprite}#icon-github"></use>
-                    </svg>
+                     <img class="image_team" src="https://i.ibb.co/zbzM10k/photo-2022-09-28-00-42-22.jpg"   alt="Beautiful nature">
                 </a>
                 <p class="team-name">Nadin</p>
                 <p class="team-role">Scrum Master</p></div>
@@ -33,9 +29,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/ChernyshenkoI" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                         <use href="${sprite}#icon-github"></use>
-                    </svg>
+                     <img class="image_team" src="https://placeimg.com/400/200/nature"   alt="Beautiful nature">
                 </a>
                 <p class="team-name">Iryna</p>
                 <p class="team-role">Developer</p></div>
@@ -43,9 +37,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/JulkaUlka" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                         <use href="${sprite}#icon-github"></use>
-                    </svg>
+                     <img class="image_team" src="https://i.ibb.co/mG2LQtf/photo-of-me.jpg"   alt="Beautiful nature">
                 </a>
                 <p class="team-name">Yuliia</p>
                 <p class="team-role">Developer</p></div>
@@ -54,9 +46,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/snackli17" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                        <use href="${sprite}#icon-github"></use>
-                    </svg>
+                      <img class="image_team" src="https://i.ibb.co/cyhZXS5/image.png"   alt="Beautiful nature">
                 </a>
                 <p class="team-name">NATALIA</p>
                 <p class="team-role">Developer</p></div>
@@ -65,9 +55,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/YuliiaGagina" target="_blank" class="team-git">
-                    <svg class="icon-github" width="50" height="50">
-                      <use href="${sprite}#icon-github"></use>
-                    </svg>
+                     <img class="image_team" src="https://i.ibb.co/WzYmdW4/photo-2023-01-23-17-20-20.jpg"   alt="Yuliia">
                 </a>
                 <p class="team-name">Yuliia</p>
                 <p class="team-role">Developer</p></div>

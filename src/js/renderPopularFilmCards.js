@@ -10,40 +10,43 @@ const filmListElem = document.querySelector('.films-list');
 const container = document.getElementById('tui-pagination-container');
 
 
-let instance =  null;
-function createPaginationIfRequired(totalItems){ 
-  if(instance) return;
- instance = new Pagination(container, { 
-  totalItems: totalItems,
-  itemsPerPage: 20,
-  visiblePages: 10,
-  page: 1 ,
-  centerAlign: false,
-  usageStatistics: false,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}"></span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
-      '</a>'
-  }
 
- });
- instance.on('afterMove', (event) => {
-  const currentPage = event.page;
-  renderPopularFilmCards(currentPage);
-});
+
+let instance = null;
+function createPaginationIfRequired(totalItems) {
+  if (instance) return;
+  instance = new Pagination(container, {
+    totalItems: totalItems,
+    itemsPerPage: 20,
+    visiblePages: 10,
+    page: 1,
+    centerAlign: false,
+    usageStatistics: false,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
+
+        '<span class="tui-ico-{{type}}"></span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}"></span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>'
+    }
+
+  });
+  instance.on('afterMove', (event) => {
+    const currentPage = event.page;
+    renderPopularFilmCards(currentPage);
+  });
 };
 
 let genresArr = [];
@@ -142,9 +145,9 @@ export function renderMarkup(arr) {
               <img
                 width="280"
                 height="420"
-                src="${TheMovieDbAPI.IMG_URL + poster_path}"
                 alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path} movie"
-                class="films-list__image"
+                class="films-list__image lazyload"
+                src="${TheMovieDbAPI.IMG_URL + poster_path}"
               />
             </div>
 				<div class="poster__info">

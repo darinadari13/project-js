@@ -11,6 +11,8 @@ refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
 const theMovieDbAPI = new TheMovieDbAPI();
 
+
+
 async function onFilmCardClick(e) {
   e.preventDefault();
   startSpin();
@@ -92,11 +94,15 @@ async function onFilmCardClick(e) {
   refs.filmModal.addEventListener('click', onCloseModalBtn);
   document.addEventListener('keydown', onEscKeyBtnPress);
 
-  const addToWatchlistBtn = document.querySelector('.film-modal .film-modal-btn-action.accent')
-  const addToQueuelistBtn = document.querySelector('.film-modal .film-modal-btn-action.transparent')
+  const addToWatchlistBtn = document.querySelector(
+    '.film-modal .film-modal-btn-action.accent'
+  );
+  const addToQueuelistBtn = document.querySelector(
+    '.film-modal .film-modal-btn-action.transparent'
+  );
 
-  addToWatchlistBtn.addEventListener('click', onAddToWatchedBtnClick)
-  addToQueuelistBtn.addEventListener('click', onAddToQueueBtnClick)
+  addToWatchlistBtn.addEventListener('click', onAddToWatchedBtnClick);
+  addToQueuelistBtn.addEventListener('click', onAddToQueueBtnClick);
 }
 
 function onCloseModalBtn(e) {
@@ -115,23 +121,23 @@ function onEscKeyBtnPress(e) {
   }
 }
 
-
-
 async function onAddToWatchedBtnClick(e) {
   e.preventDefault();
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+  const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-    const watchedFilms = JSON.parse(localStorage.getItem("watched") || '[]');
-    watchedFilms.push(data);
-
-    localStorage.setItem("watched", JSON.stringify(watchedFilms));
-  } catch (err) {
-    console.log(err);
+  if (films.some(film => film.id == movieId)) {
+    return alert('This film is already added to watchlist')
   }
+
+  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+
+  films.push(data);
+
+  localStorage.setItem('watched', JSON.stringify(films));
 }
 
 async function onAddToQueueBtnClick(e) {
@@ -139,14 +145,15 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+  const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-    const watchedFilms = JSON.parse(localStorage.getItem("queue") || '[]');
-    watchedFilms.push(data);
-
-    localStorage.setItem("queue", JSON.stringify(watchedFilms));
-  } catch (err) {
-    console.log(err);
+  if (films.some(film => film.id == movieId)) {
+    return alert('This film is already added to queue')
   }
+
+  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+  watchedFilms.push(data);
+
+  localStorage.setItem('queue', JSON.stringify(watchedFilms));
 }
