@@ -10,6 +10,8 @@ refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
 const theMovieDbAPI = new TheMovieDbAPI();
 
+
+
 async function onFilmCardClick(e) {
   e.preventDefault();
   if (e.target === e.currentTarget) {
@@ -142,8 +144,7 @@ async function onAddToWatchedBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+  const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
     const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
 
@@ -164,8 +165,8 @@ async function onAddToWatchedBtnClick(e) {
       localStorage.setItem('watched', JSON.stringify(watchedFilms));
     }
   } catch (err) {
-    console.log(err);
-  }
+    console.log(err); 
+
 }
 
 async function onAddToQueueBtnClick(e) {
@@ -174,6 +175,7 @@ async function onAddToQueueBtnClick(e) {
     'remove from queue';
 
   const movieId = e.target.dataset.movieId;
+
 
   try {
     const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
@@ -195,6 +197,6 @@ async function onAddToQueueBtnClick(e) {
       localStorage.setItem('queue', JSON.stringify(watchedFilms));
     }
   } catch (err) {
-    console.log(err);
-  }
+    console.log(err);  
+
 }
