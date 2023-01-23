@@ -27,7 +27,8 @@ export class TheMovieDbAPI {
     const response = await axios.get(
       `${TheMovieDbAPI.BASE_URL}/genre/movie/list`,
       {params:{
-        api_key: TheMovieDbAPI.API_KEY  
+        api_key: TheMovieDbAPI.API_KEY,
+        
       }}
     );
     return response;
@@ -39,6 +40,7 @@ export class TheMovieDbAPI {
         language: 'en-US',
         page: this.page,
         query: this.query,
+        
       },
     };
 
@@ -53,7 +55,11 @@ export class TheMovieDbAPI {
 
   async getMovieInfoById(id) {
     const response = await axios.get(
-      `${TheMovieDbAPI.BASE_URL}/movie/${id}?${TheMovieDbAPI.API_KEY}`
+      `${TheMovieDbAPI.BASE_URL}/movie/${id}?`,
+      {params:{
+        api_key: TheMovieDbAPI.API_KEY,
+        
+      }}
     );
 
     return response;
