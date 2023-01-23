@@ -8,6 +8,26 @@ const filmListElem = document.querySelector('.films-list');
 const container = document.getElementById('tui-pagination-container');
 
 
+
+let instance =  null;
+function createPaginationIfRequired(totalItems){ 
+  if(instance) return;
+ instance = new Pagination(container, { 
+  totalItems: totalItems,
+  itemsPerPage: 20,
+  visiblePages: 10,
+  page: 1 ,
+  centerAlign: false,
+  usageStatistics: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
+
 let instance = null;
 function createPaginationIfRequired(totalItems) {
   if (instance) return;
@@ -25,6 +45,7 @@ function createPaginationIfRequired(totalItems) {
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
         '<a href="#" class="tui-page-btn-more tui-{{type}}">' +
+
         '<span class="tui-ico-{{type}}"></span>' +
         '</a>',
       disabledMoveButton:
