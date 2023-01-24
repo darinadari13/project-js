@@ -6,12 +6,11 @@ const refs = {
   filmModal: document.querySelector('.film-modal-backdrop'),
   closeModalBtn: document.querySelector('.film-modal-close'),
   filmModalWrapEl: document.querySelector('.film-modal-wrap'),
+  body: document.querySelector('body'),
 };
 refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
 const theMovieDbAPI = new TheMovieDbAPI();
-
-
 
 async function onFilmCardClick(e) {
   e.preventDefault();
@@ -41,8 +40,9 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
-      } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
+      TheMovieDbAPI.IMG_URL + poster_path
+    } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -51,8 +51,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-        1
-      )}</span> / <span>${vote_count}</span>
+                  1
+                )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -106,6 +106,7 @@ async function onFilmCardClick(e) {
   }
 
   refs.filmModal.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 
   refs.closeModalBtn.addEventListener('click', onCloseModalBtn);
   refs.filmModal.addEventListener('click', onCloseModalBtn);
@@ -128,6 +129,7 @@ function onCloseModalBtn(e) {
   }
   refs.filmModalWrapEl.innerHTML = '';
   refs.filmModal.classList.add('is-hidden');
+  refs.body.classList.remove('no-scroll');
   document.removeEventListener('keydown', onEscKeyBtnPress);
   refs.closeModalBtn.removeEventListener('click', onCloseModalBtn);
 }
@@ -147,12 +149,9 @@ async function onAddToWatchedBtnClick(e) {
 
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-
   const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
 
-
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
-
 
   let found = watchedFilms.find(obj => obj.id === +movieId);
 
@@ -170,8 +169,6 @@ async function onAddToWatchedBtnClick(e) {
     watchedFilms.push(data);
     localStorage.setItem('watched', JSON.stringify(watchedFilms));
   }
-
-
 }
 
 async function onAddToQueueBtnClick(e) {
@@ -181,18 +178,13 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-
-
   try {
     const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
     const films = JSON.parse(localStorage.getItem('queue') || '[]');
 
-
-
     const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
     let found = watchedFilms.find(obj => obj.id === +movieId);
-
 
     if (found) {
       watchedFilms.splice(
@@ -210,10 +202,8 @@ async function onAddToQueueBtnClick(e) {
   } catch (err) {
     console.log(err);
 
-
     films.push(data);
 
     localStorage.setItem('queue', JSON.stringify(films));
-
   }
 }
