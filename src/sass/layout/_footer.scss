@@ -7,9 +7,16 @@
     
     &__text{
      color: #545454;
-     font-size: 16px;
+     font-size: 14px;
     font-weight: 400;
     text-align: center;
+    line-height: 1.14;
+
+   @include adaptive(tablet) {
+        font-size: 16px;
+        line-height: 1.19;
+      }
+
     }
     &__heart{
         height: 15px;
@@ -17,3 +24,12 @@
     fill: #FF6B08;
     }
 }
+
+.student-link{
+    color: var(--accent-color-main);
+    &:hover, &:focus{
+        color: var(--text-color-warning);
+    }
+    
+}
+
