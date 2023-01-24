@@ -29,7 +29,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/ChernyshenkoI" target="_blank" class="team-git">
-                    <img src="https://i.ibb.co/PhKd08m/photo-2023-01-24-08-30-05.jpg"  alt="Iryna">
+                    <img class="image_team" src="https://i.ibb.co/PhKd08m/photo-2023-01-24-08-30-05.jpg"  alt="Iryna">
                 </a>
                 <p class="team-name">Iryna</p>
                 <p class="team-role">Developer</p></div>
