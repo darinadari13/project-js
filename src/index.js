@@ -12,3 +12,4 @@ import './js/renderPopularFilmCards';
 // import './js/preloaderBtn'
 import './js/teamModal';
 import './js/confetti';
+import './js/button-up';
