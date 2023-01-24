@@ -1,9 +1,5 @@
-//import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import * as basicLightbox from 'basiclightbox';
 import sprite from '../../images/icons.svg';
-
-
-
 
 const markupTeam = `
 		<div class="modal-team">
@@ -67,15 +63,18 @@ const linkFooter = document.querySelector('.js-team-modal');
 linkFooter.addEventListener('click', openModalTeam);
 const modalTeam = basicLightbox.create(markupTeam);
 function openModalTeam(e) {
-  e.preventDefault();
-  modalTeam.show();
+    e.preventDefault();
+    modalTeam.show();
 
-  window.addEventListener('keydown', closeModalTeam);
+    window.addEventListener('keydown', closeModalTeam);
 
-  function closeModalTeam(e) {
-    if (e.code === 'Escape') {
-      modalTeam.close();
-      window.removeEventListener('keydown', closeModalTeam);
+    function closeModalTeam(e) {
+        if (e.code === 'Escape') {
+            modalTeam.close();
+            window.removeEventListener('keydown', closeModalTeam);
+        }
     }
-  }
 }
+
+
+
