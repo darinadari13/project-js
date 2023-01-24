@@ -46,7 +46,7 @@ const markupTeam = `
 
             <div class="team-card">
                 <a href="https://github.com/snackli17" target="_blank" class="team-git">
-                      <img src="https://i.ibb.co/K62SgmX/image.png"   alt="NATALIA">
+                      <img class="image_team" src="https://i.ibb.co/K62SgmX/image.png"   alt="NATALIA">
                 </a>
                 <p class="team-name">NATALIA</p>
                 <p class="team-role">Developer</p></div>
