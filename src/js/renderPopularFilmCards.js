@@ -113,7 +113,10 @@ export async function renderPopularFilmCards(pageInitialNumber = 1) {
     const {
       data: { results: filmArr, total_results },
     } = await theMovieDbAPI.getPopularFilms(pageInitialNumber);
-    createPaginationIfRequired(total_results);
+    setTimeout(()=>{
+      createPaginationIfRequired(total_results);
+    }, 3000);
+  
     renderMarkup(filmArr);
 
   } catch (err) {
