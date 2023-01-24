@@ -145,7 +145,7 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  const films = JSON.parse(localStorage.getItem('watched') || '[]');
+  const films = JSON.parse(localStorage.getItem('queue') || '[]');
 
   // if (films.some(film => film.id == movieId)) {
   //   return alert('This film is already added to queue')
@@ -153,7 +153,7 @@ async function onAddToQueueBtnClick(e) {
 
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
-  watchedFilms.push(data);
+  films.push(data);
 
-  localStorage.setItem('queue', JSON.stringify(watchedFilms));
+  localStorage.setItem('queue', JSON.stringify(films));
 }
