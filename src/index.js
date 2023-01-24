@@ -6,7 +6,7 @@ import './js/requestAPI';
 import './js/home-page';
 import './js/my-library';
 import './js/footer';
-import './js/film-modal';
+
 import './js/renderPopularFilmCards';
 // import './js/preloader'
 // import './js/preloaderBtn'
