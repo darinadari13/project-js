@@ -128,9 +128,9 @@ async function onAddToWatchedBtnClick(e) {
 
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-  if (films.some(film => film.id == movieId)) {
-    return alert('This film is already added to watchlist')
-  }
+  // if (films.some(film => film.id == movieId)) {
+  //   return alert('This film is already added to watchlist')
+  // }
 
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
@@ -147,9 +147,9 @@ async function onAddToQueueBtnClick(e) {
 
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
 
-  if (films.some(film => film.id == movieId)) {
-    return alert('This film is already added to queue')
-  }
+  // if (films.some(film => film.id == movieId)) {
+  //   return alert('This film is already added to queue')
+  // }
 
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
