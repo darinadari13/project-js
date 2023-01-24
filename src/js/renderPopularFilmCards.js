@@ -1,6 +1,8 @@
 import debounce from 'lodash.debounce';
 import { TheMovieDbAPI } from './theMovieDbAPI';
 import Pagination from 'tui-pagination';
+import { startSpin, stopSpin } from './preloaderBtn';
+
 
 const theMovieDbAPI = new TheMovieDbAPI();
 
@@ -59,6 +61,7 @@ export async function renderGenresArr(response) {
 }
 
 renderGenresArr();
+
 
 // export async function renderPopularFilmCards(response) {
 //   try {
@@ -161,7 +164,7 @@ export function renderMarkup(arr) {
         </li>`;
     })
     .join('');
-
+stopSpin();
   setTimeout(() => {
     filmListElem.innerHTML = markup;
   }, 200);

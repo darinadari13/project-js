@@ -25,7 +25,7 @@ export class TheMovieDbAPI {
         },
       }
     );
-    stopSpin();
+    // stopSpin();
     return response;
   }
 
@@ -56,7 +56,7 @@ export class TheMovieDbAPI {
       `${TheMovieDbAPI.BASE_URL}/search/movie`,
       searchParams
     );
-stopSpin();
+// stopSpin();
     return response;
     // https://api.themoviedb.org/3/search/movie?api_key=1deae1a36202e3ac8c29219a3d453e0f&language=en-US&page=1&query=love
   }

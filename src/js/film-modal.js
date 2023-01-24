@@ -1,4 +1,5 @@
 import { TheMovieDbAPI } from './theMovieDbAPI';
+import { startSpin, stopSpin } from './preloaderBtn';
 
 const refs = {
   openFilmModal: document.querySelector('.js-film-modal-open'),
@@ -14,6 +15,7 @@ const theMovieDbAPI = new TheMovieDbAPI();
 
 async function onFilmCardClick(e) {
   e.preventDefault();
+  startSpin();
   if (e.target === e.currentTarget) {
     return;
   }
@@ -80,7 +82,7 @@ async function onFilmCardClick(e) {
             </button>
           </div>
         </div>`;
-
+    stopSpin();
     refs.filmModalWrapEl.innerHTML = modalFilmMarkup;
   } catch (err) {
     console.log(err);
