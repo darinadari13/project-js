@@ -25,6 +25,7 @@ async function onFilmCardClick(e) {
 
   try {
     const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
     const {
       poster_path,
       title,
@@ -40,8 +41,9 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
-      } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
+      TheMovieDbAPI.IMG_URL + poster_path
+    } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -50,8 +52,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-        1
-      )}</span> / <span>${vote_count}</span>
+                  1
+                )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -84,6 +86,22 @@ async function onFilmCardClick(e) {
         </div>`;
     stopSpin();
     refs.filmModalWrapEl.innerHTML = modalFilmMarkup;
+
+    const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
+
+    let found = watchedFilms.find(obj => obj.id === +movieId);
+
+    const queuedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
+    let foundQueue = queuedFilms.find(obj => obj.id === +movieId);
+
+    if (found) {
+      document.querySelector('.film-modal-btn-action.accent').textContent =
+        'remove from watched';
+    }
+    if (foundQueue) {
+      document.querySelector('.film-modal-btn-action.transparent').textContent =
+        'remove from queue';
+    }
   } catch (err) {
     console.log(err);
   }
@@ -123,10 +141,15 @@ function onEscKeyBtnPress(e) {
 
 async function onAddToWatchedBtnClick(e) {
   e.preventDefault();
+  document.querySelector('.film-modal-btn-action.accent').textContent =
+    'remove from watched';
 
   const movieId = e.target.dataset.movieId;
 
   const films = JSON.parse(localStorage.getItem('watched') || '[]');
+
+
+    const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
 
   // if (films.some(film => film.id == movieId)) {
   //   return alert('This film is already added to watchlist')
@@ -135,15 +158,38 @@ async function onAddToWatchedBtnClick(e) {
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
 
-  films.push(data);
+    let found = watchedFilms.find(obj => obj.id === +movieId);
 
-  localStorage.setItem('watched', JSON.stringify(films));
+    if (found) {
+      watchedFilms.splice(
+        watchedFilms.findIndex(film => +film.id === +movieId),
+        1
+      );
+
+      localStorage.setItem('watched', JSON.stringify(watchedFilms));
+      document.querySelector('.film-modal-btn-action.accent').textContent =
+        'add to watched';
+    } else {
+      console.log(data);
+      watchedFilms.push(data);
+      localStorage.setItem('watched', JSON.stringify(watchedFilms));
+    }
+  } catch (err) {
+    console.log(err); 
+
 }
 
 async function onAddToQueueBtnClick(e) {
   e.preventDefault();
+  document.querySelector('.film-modal-btn-action.transparent').textContent =
+    'remove from queue';
 
   const movieId = e.target.dataset.movieId;
+
+
+
+  try {
+    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
   const films = JSON.parse(localStorage.getItem('queue') || '[]');
 
@@ -151,9 +197,30 @@ async function onAddToQueueBtnClick(e) {
   //   return alert('This film is already added to queue')
   // }
 
-  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+
+    const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
+    let found = watchedFilms.find(obj => obj.id === +movieId);
+
+
+    if (found) {
+      watchedFilms.splice(
+        watchedFilms.findIndex(film => +film.id === +movieId),
+        1
+      );
+
+      localStorage.setItem('queue', JSON.stringify(watchedFilms));
+      document.querySelector('.film-modal-btn-action.transparent').textContent =
+        'add to queue';
+    } else {
+      watchedFilms.push(data);
+      localStorage.setItem('queue', JSON.stringify(watchedFilms));
+    }
+  } catch (err) {
+    console.log(err);  
+
 
   films.push(data);
 
   localStorage.setItem('queue', JSON.stringify(films));
+
 }

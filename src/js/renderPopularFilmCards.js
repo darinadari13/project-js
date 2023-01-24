@@ -63,6 +63,7 @@ export async function renderGenresArr(response) {
 renderGenresArr();
 
 
+
 // export async function renderPopularFilmCards(response) {
 //   try {
 //     const {
@@ -110,6 +111,7 @@ renderGenresArr();
 // }
 
 // renderPopularFilmCards();
+
 
 export async function renderPopularFilmCards(pageInitialNumber = 1) {
   try {
@@ -162,12 +164,22 @@ export function renderMarkup(arr) {
 				</div>
           </a>
         </li>`;
+      
+      
+      
+      
     })
+
+    .join('');  
+  
+
+
     .join('');
 stopSpin();
+
   setTimeout(() => {
     filmListElem.innerHTML = markup;
-  }, 200);
+  }, 500);
 }
 
 renderPopularFilmCards();

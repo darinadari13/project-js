@@ -56,7 +56,7 @@ function createPaginationIfRequired(totalFilms) {
 
 
 
-const genresPromise = theMovieDbAPI.getGenres()
+const genresPromise = theMovieDbAPI.getGenres();
 
 function renderMovies(films, genres) {
   const markup = films
@@ -72,10 +72,12 @@ function renderMovies(films, genres) {
       // const filmGenres = newArr.join(', ');
 
 
+
       const filmGenresString = genres
         .filter(genre => filmGenres && filmGenres.some(filmGenre => filmGenre.id === genre.id))
         .map(genre => genre.name)
         .join(', ')
+
 
       return `
         <li class="films-list__item poster">
@@ -108,9 +110,13 @@ function renderMovies(films, genres) {
 }
 
 function renderMoviesList(type, page = 1) {
+
   const films = JSON.parse(localStorage.getItem(type) || '[]');
   page--;
   genresPromise.then(({ data }) => {
+
+
+
     renderMovies(films.slice(page * 20, (page + 1) * 20), data.genres)
   })
   let totalFilms = films.length;
@@ -140,10 +146,19 @@ function renderMoviesList(type, page = 1) {
 // makePaginationOnQueue ();
 
 
-watchedBtn && watchedBtn.addEventListener('click', () => renderMoviesList('watched'));
-queueBtn && queueBtn.addEventListener('click', () => renderMoviesList('queue'));
+watchedBtn && watchedBtn.addEventListener('click', () => {
+  renderMoviesList('watched');
+  queueBtn.classList.remove('btn-activ');
+  watchedBtn.classList.add('btn-activ');
+});
+queueBtn && queueBtn.addEventListener('click', () => {
+  renderMoviesList('queue');
+  watchedBtn.classList.remove('btn-activ');
+  queueBtn.classList.add('btn-activ');
+});
 
 renderMoviesList('watched')
+
 
 
 
