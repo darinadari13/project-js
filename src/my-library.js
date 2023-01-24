@@ -6,3 +6,4 @@ import './js/film-modal';
 import './js/footer';
 import './js/teamModal';
 import './js/confetti';
+import './js/home-page';
