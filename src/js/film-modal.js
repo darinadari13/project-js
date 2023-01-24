@@ -150,9 +150,6 @@ async function onAddToWatchedBtnClick(e) {
 
   const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
 
-  // if (films.some(film => film.id == movieId)) {
-  //   return alert('This film is already added to watchlist')
-  // }
 
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 

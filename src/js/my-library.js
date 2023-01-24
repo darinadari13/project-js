@@ -43,14 +43,14 @@ function createPaginationIfRequired(totalFilms) {
   });
   instance.on('afterMove', (event) => {
     const currentPage = event.page;
-   if(watchedBtn.classList.contains('btn-activ')) {
-    renderMoviesList('watched', currentPage);
-   }
-    else if(queueBtn.classList.contains('btn-activ')){
+    if (watchedBtn.classList.contains('btn-activ')) {
+      renderMoviesList('watched', currentPage);
+    }
+    else if (queueBtn.classList.contains('btn-activ')) {
       renderMoviesList('queue', currentPage);
     }
-   
-    });
+
+  });
 };
 
 
@@ -63,22 +63,10 @@ function renderMovies(films, genres) {
     .map(film => {
       const { id, title, vote_average, poster_path, release_date, genres: filmGenres } = film;
 
-      // const newArr = [];
-      // for (const el of genresArr) {
-      //   if (genre_ids.includes(el.id)) {
-      //     newArr.push(el.name);
-      //   }
-      // }
-      // const filmGenres = newArr.join(', ');
-
-
-
       const filmGenresString = genres
         .filter(genre => filmGenres && filmGenres.some(filmGenre => filmGenre.id === genre.id))
         .map(genre => genre.name)
         .join(', ')
-
-
       return `
         <li class="films-list__item poster">
           <a href="#" class="films-list__link" data-movie-id="${id}">
@@ -114,36 +102,33 @@ function renderMoviesList(type, page = 1) {
   const films = JSON.parse(localStorage.getItem(type) || '[]');
   page--;
   genresPromise.then(({ data }) => {
-
-
-
     renderMovies(films.slice(page * 20, (page + 1) * 20), data.genres)
   })
   let totalFilms = films.length;
   if (totalFilms > 20) {
-    setTimeout(()=>{
-      
+    setTimeout(() => {
+
       createPaginationIfRequired(totalFilms);
     }, 1500);
-    
-  } else{
+
+  } else {
     return;
   }
 
 }
-// function makePaginationOnQueue (){
-//   const queueFilms = JSON.parse(localStorage.getItem('queue') || '[]');{
+// function makePaginationOnQueue() {
+//   const queueFilms = JSON.parse(localStorage.getItem('queue') || '[]'); {
 //     let totalFilms = queueFilms.length;
 //     if (totalFilms > 20) {
-//       setTimeout(()=>{
-        
+//       setTimeout(() => {
+
 //         createPaginationIfRequired(totalFilms);
 //       }, 1500);
-      
+
 //     }
 //   }
 // }
-// makePaginationOnQueue ();
+// makePaginationOnQueue();
 
 
 watchedBtn && watchedBtn.addEventListener('click', () => {
