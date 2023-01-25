@@ -43,9 +43,8 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
-      TheMovieDbAPI.IMG_URL + poster_path
-    } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
+      } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -54,8 +53,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-                  1
-                )}</span> / <span>${vote_count}</span>
+        1
+      )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -187,6 +186,7 @@ async function onAddToQueueBtnClick(e) {
   const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
   let found = watchedFilms.find(obj => obj.id === +movieId);
 
+
   if (found) {
 
     watchedFilms.splice(
@@ -205,5 +205,7 @@ async function onAddToQueueBtnClick(e) {
   }
   if (window.location.pathname === '/my-library.html' && refs.queueBtn.classList.contains("btn-activ")) {
     renderMoviesList('queue');
+
   }
 }
+  
