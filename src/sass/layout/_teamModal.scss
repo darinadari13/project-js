@@ -196,6 +196,16 @@
     top: 44%;
     right: 37%;
   }
+
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .title-team {
+  top: 22%;
+  right: 36%;
+  }
+}
+
+
 }
   // fill: #000000;
   // transform: scale(0.8);
