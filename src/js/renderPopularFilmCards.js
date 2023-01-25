@@ -2,6 +2,7 @@ import debounce from 'lodash.debounce';
 import { TheMovieDbAPI } from './theMovieDbAPI';
 import Pagination from 'tui-pagination';
 import { startSpin, stopSpin } from './preloaderBtn';
+import 'lazysizes';
 
 
 const theMovieDbAPI = new TheMovieDbAPI();
@@ -152,7 +153,8 @@ export function renderMarkup(arr) {
                 height="420"
                 alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path} movie"
                 class="films-list__image lazyload"
-                src="${TheMovieDbAPI.IMG_URL + poster_path}"
+                data-src="${TheMovieDbAPI.IMG_URL + poster_path}"
+                src="https://college.unc.edu/wp-content/uploads/sites/1280/2020/05/film1.jpg"
               />
             </div>
 				<div class="poster__info">
