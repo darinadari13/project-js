@@ -17,8 +17,7 @@
   top: 0;
   left: 0;
   opacity: 1;
-  background: rgba(51, 134, 143, 0.5);
-  // background: rgba(255,255,255, 0.5);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .basicLightbox--visible .basicLightbox__placeholder {
@@ -34,21 +33,24 @@
 }
 
 .modal-team {
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  padding: 10px;
+  row-gap: 20px;
   width: 240px;
   background-color: #f7f7f7;
   border-radius: 15px;
-
-  @media screen and (min-width: 767px) {
-    width: 600px;
+  @include adaptive(tablet) {
+    flex-direction: row;
+    justify-content: center;
+    row-gap: 32px;
+    column-gap: 32px;
+    width: 700px;
     border-radius: 25px;
   }
-
-  @media screen and (min-width: 1280px) {
-    margin: -30px;
-    width: 800px;
+  @include adaptive(desktop) {
+    justify-content: space-around;
   }
 }
 
@@ -56,73 +58,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
-  border-radius: 53% 47% 52% 48% / 30% 30% 70% 70%;
-  width: calc((100% - 80px) / 2);
-  box-shadow: 0 50px 100px -20px #32325d40, 0 30px 60px -30px #20a1d8,
-    inset 0 -2px 6px #0a254059;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+
   transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1);
   transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    box-shadow: rgba(250, 95, 5, 0.25) 0px 50px 100px -20px,
-      rgba(218, 22, 22, 0.3) 0px 30px 60px -30px,
-      rgba(247, 30, 30, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: 0px 8px 20px rgba(255, 107, 1, 0.6);
     transform: scale(1.15);
   }
 
   @media screen and (min-width: 767px) {
-    width: calc((100% - 160px) / 4);
-    border-radius: 20px;
+    border-radius: 10px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin: 30px;
-    border-radius: 30px;
-    width: calc((100% - 240px) / 4);
+    border-radius: 10px;
   }
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-  border-radius: 53% 47% 52% 48% / 30% 30% 70% 70%;
-  width: calc((100% - 80px) / 2);
-  box-shadow: 0 50px 100px -20px #32325d40, 0 30px 60px -30px #20a1d8,
-    inset 0 -2px 6px #0a254059;
-  transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1);
-  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    box-shadow: rgba(250, 95, 5, 0.25) 0px 50px 100px -20px,
-      rgba(218, 22, 22, 0.3) 0px 30px 60px -30px,
-      rgba(247, 30, 30, 0.35) 0px -2px 6px 0px inset;
-    transform: scale(1.15);
-  }
-
-  @media screen and (min-width: 767px) {
-    width: calc((100% - 160px) / 4);
-    border-radius: 20px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin: 30px;
-    border-radius: 30px;
-    width: calc((100% - 240px) / 4);
-  }
-}
-
-.team-card:not(:last-child) {
-  margin: 23px 59px;
 }
 
 .team-name {
-  padding: 5px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   font-family: Roboto;
   font-size: 15px;
-  font-style: oblique;
 
   @media screen and (min-width: 767px) {
     font-weight: 500;
@@ -139,142 +101,30 @@
   font-family: Roboto;
   font-weight: 400;
   font-size: 10px;
-  font-style: oblique;
-  color: #fb8e32;
+  color: var(--accent-color-main);
   margin-bottom: 10px;
 
   @media screen and (min-width: 767px) {
     font-weight: 500;
     font-size: 15px;
   }
-
-  @media screen and (min-width: 1280px) {
-    font-size: 15px;
-  }
-}
-
-.team-git {
-  margin-top: 10px;
-  padding: 10px;
-}
-
-.icon-github {
-  fill: #000000;
-  transform: scale(1);
-  transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    fill: #00abf7;
-    transform: scale(1.5);
-  }
 }
 
 .title-team {
-  position: absolute;
-  top: 47%;
-  right: 50%;
-  text-align: center;
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 524;
-  font-size: 30px;
-  // padding: 15px 1px;
-  line-height: 30px;
-  position: absolute;
-  color: rgba(158, 157, 157, 0.767);
-  font-variation-settings: 'slnt' -10;
-  text-shadow: 0 1px 6px orange;
-
-  @media screen and (min-width: 768px) {
-    top: 176px;
-    right: 30px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    top: 44%;
-    right: 37%;
-  }
-
-
-@media screen and (min-width: 320px) and (max-width: 480px) {
-  .title-team {
-  top: 22%;
-  right: 36%;
-  }
+  margin-bottom: 10px;
 }
-
-
-}
-  // fill: #000000;
-  // transform: scale(0.8);
-  // transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1),
-  //   fill 350ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  // &:hover,
-  // &:focus {
-  //   fill: #00abf7;
-  //   transform: scale(1.5);
-
-// }
-
-.title-team {
-  position: absolute;
-  top: 47%;
-  right: 50%;
-  font-family: 'Inter';
-  font-style: italic;
-  font-weight: 524;
-  font-size: 25px;
-  line-height: 39px;
-  color: rgba(158, 157, 157, 0.767);
-  font-variation-settings: 'slnt' -10;
-  text-shadow: 0 1px 6px orange;
-}
-
-  @media screen and (max-width: 768px) {
-    .title-team {
-    top: 176px;
-    right: 30px;
-  }
-}
-
-  @media screen and (min-width: 1280px) {
-  .title-team {
-    top: 44%;
-    right: 37%;
-  }
-}
-
-    @media screen and (max-width: 480px) {
-      .title-team {
-      top: 266px;
-      right: 7px;
-      font-size: 25px;
-      }
-    }
-
-
 
 .confetti-button {
-  background-color: #404663;
-  color: #fff;
-  border: 0;
-  top: 304px;
+  background-color: var(--accent-color-main);
+  border: 1px solid black;
   font-size: 1rem;
   font-weight: 400;
-  padding: 4px;
+  padding: 8px;
   border-radius: 0.5em;
   z-index: 999;
-  position: absolute;
+  box-shadow: 2px 2px 7px 5px #00000080;
   display: flex;
   gap: 2px;
-  left: 71px;
-  box-shadow: 0px 1.7px 2.2px rgba(0, 0, 0, 0.02),
-    0px 4px 5.3px rgba(0, 0, 0, 0.028), 0px 7.5px 10px rgba(0, 0, 0, 0.035),
-    0px 13.4px 17.9px rgba(0, 0, 0, 0.042),
-    0px 25.1px 33.4px rgba(0, 0, 0, 0.05), 0px 60px 80px rgba(0, 0, 0, 0.07);
 }
 
 @media screen and (max-width: 480px) {
@@ -283,32 +133,29 @@
   }
 }
 
-
-
-
 .confetti-button:active {
   z-index: 3;
 }
 
 .bavovna_title {
-  color: #fb8e32;
+  color: black;
 }
 
+.team-git {
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 2px 2px 7px 5px #00000080;
+}
 .image_team {
-  width: 130px;
-  height: 130px;
+  vertical-align: middle;
+  max-width: 100%;
+  width: 150px;
+  height: 150px;
 }
 
-  @media screen and (max-width: 768px) {
-    .image_team {
-      width: 60px;
-      height: 60px;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    .image_team {
-      width: 15px;
-      height: 15px;
-    }
-  }
-
+body.dark-mode .modal-team {
+  background-color: #686867d0;
+}
+body.dark-mode .team-name {
+  color: white;
+}

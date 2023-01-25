@@ -313,3 +313,10 @@ body {
   background-color: red;
   border: 1px solid red;
 }
+
+body.dark-mode .film-modal {
+  background-color: #757473d0;
+}
+body.dark-mode .film-modal-stats-name {
+  color: black;
+}
