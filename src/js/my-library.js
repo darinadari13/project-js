@@ -97,7 +97,7 @@ function renderMovies(films, genres) {
   filmListElem.innerHTML = markup;
 }
 
-function renderMoviesList(type, page = 1) {
+export function renderMoviesList(type, page = 1) {
 
   const films = JSON.parse(localStorage.getItem(type) || '[]');
   page--;
@@ -116,19 +116,6 @@ function renderMoviesList(type, page = 1) {
   }
 
 }
-// function makePaginationOnQueue() {
-//   const queueFilms = JSON.parse(localStorage.getItem('queue') || '[]'); {
-//     let totalFilms = queueFilms.length;
-//     if (totalFilms > 20) {
-//       setTimeout(() => {
-
-//         createPaginationIfRequired(totalFilms);
-//       }, 1500);
-
-//     }
-//   }
-// }
-// makePaginationOnQueue();
 
 
 watchedBtn && watchedBtn.addEventListener('click', () => {
