@@ -1,5 +1,6 @@
 import { TheMovieDbAPI } from './theMovieDbAPI';
 import { startSpin, stopSpin } from './preloaderBtn';
+import { renderMoviesList } from './my-library';
 
 const refs = {
   openFilmModal: document.querySelector('.js-film-modal-open'),
@@ -7,8 +8,13 @@ const refs = {
   closeModalBtn: document.querySelector('.film-modal-close'),
   filmModalWrapEl: document.querySelector('.film-modal-wrap'),
   body: document.querySelector('body'),
+
   filmTrailerBackdrop: document.querySelector('.film-trailer-backdrop'),
   filmTrailerWrap: document.querySelector('.film-trailer'),
+
+  watchedBtn: document.querySelector('#watched'),
+queueBtn: document.querySelector('#queue'),
+
 };
 refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
@@ -123,9 +129,13 @@ async function onFilmCardClick(e) {
   const addToQueuelistBtn = document.querySelector(
     '.film-modal .film-modal-btn-action.transparent'
   );
+
   const watchTrailerBtn = document.querySelector(
     '.film-modal .film-modal-btn-action.black'
   );
+
+  
+
 
   addToWatchlistBtn.addEventListener('click', onAddToWatchedBtnClick);
   addToQueuelistBtn.addEventListener('click', onAddToQueueBtnClick);
@@ -167,30 +177,31 @@ async function onAddToWatchedBtnClick(e) {
     'remove from watched';
 
   const movieId = e.target.dataset.movieId;
+ 
+    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+    const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');    
+    let found = watchedFilms.find(obj => obj.id === +movieId);
 
-  const films = JSON.parse(localStorage.getItem('watched') || '[]');
+    if (found) {
 
-  const watchedFilms = JSON.parse(localStorage.getItem('watched') || '[]');
+      watchedFilms.splice(
+        watchedFilms.findIndex(film => +film.id === +movieId),
+        1
+      );
 
-  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
+      localStorage.setItem('watched', JSON.stringify(watchedFilms));    
 
-  let found = watchedFilms.find(obj => obj.id === +movieId);
-
-  if (found) {
-    watchedFilms.splice(
-      watchedFilms.findIndex(film => +film.id === +movieId),
-      1
-    );
-
-    localStorage.setItem('watched', JSON.stringify(watchedFilms));
-    document.querySelector('.film-modal-btn-action.accent').textContent =
-      'add to watched';
-  } else {
-    console.log(data);
-    watchedFilms.push(data);
-    localStorage.setItem('watched', JSON.stringify(watchedFilms));
+      document.querySelector('.film-modal-btn-action.accent').textContent =
+        'add to watched';
+   
+    } else {
+      watchedFilms.push(data);
+      localStorage.setItem('watched', JSON.stringify(watchedFilms));
+    }
+    if (window.location.pathname === '/my-library.html' && refs.watchedBtn.classList.contains("btn-activ")) {
+      renderMoviesList('watched');
+    }
   }
-}
 
 async function onAddToQueueBtnClick(e) {
   e.preventDefault();
@@ -200,25 +211,29 @@ async function onAddToQueueBtnClick(e) {
   const movieId = e.target.dataset.movieId;
 
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
-
-  const films = JSON.parse(localStorage.getItem('queue') || '[]');
-
   const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
   let found = watchedFilms.find(obj => obj.id === +movieId);
 
+
   if (found) {
+
     watchedFilms.splice(
       watchedFilms.findIndex(film => +film.id === +movieId),
       1
     );
 
     localStorage.setItem('queue', JSON.stringify(watchedFilms));
+
     document.querySelector('.film-modal-btn-action.transparent').textContent =
       'add to queue';
+        
   } else {
     watchedFilms.push(data);
     localStorage.setItem('queue', JSON.stringify(watchedFilms));
   }
+  if (window.location.pathname === '/my-library.html' && refs.queueBtn.classList.contains("btn-activ")) {
+    renderMoviesList('queue');
+
 
   films.push(data);
 
@@ -274,4 +289,8 @@ function onFilmTrailerBackdropClick(e) {
 
   refs.filmTrailerBackdrop.classList.add('is-hidden');
   refs.filmTrailerWrap.innerHTML = '';
+=======
+  }
+
 }
+  
