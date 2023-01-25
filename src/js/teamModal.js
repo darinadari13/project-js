@@ -3,7 +3,6 @@ import sprite from '../../images/icons.svg';
 
 const markupTeam = `
 		<div class="modal-team">
-    
             <div class="team-card">
                 <a href="https://github.com/darinadari13" target="_blank" class="team-git">
                     <img class="image_team" src="https://i.ibb.co/3BTGp6S/photo-2023-01-23-17-15-42.jpg"   alt="Dari">
@@ -62,19 +61,20 @@ const markupTeam = `
 const linkFooter = document.querySelector('.js-team-modal');
 linkFooter.addEventListener('click', openModalTeam);
 const modalTeam = basicLightbox.create(markupTeam);
+
+
 function openModalTeam(e) {
     e.preventDefault();
     modalTeam.show();
-
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', closeModalTeam);
 
     function closeModalTeam(e) {
         if (e.code === 'Escape') {
             modalTeam.close();
             window.removeEventListener('keydown', closeModalTeam);
+            document.body.style.overflow = 'scroll';
         }
     }
 }
-
-
 
