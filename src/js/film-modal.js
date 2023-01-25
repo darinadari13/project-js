@@ -40,9 +40,8 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
-      TheMovieDbAPI.IMG_URL + poster_path
-    } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
+      } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -51,8 +50,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-                  1
-                )}</span> / <span>${vote_count}</span>
+        1
+      )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -178,32 +177,30 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-  try {
-    const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
-    const films = JSON.parse(localStorage.getItem('queue') || '[]');
+  const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
-    const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
-    let found = watchedFilms.find(obj => obj.id === +movieId);
+  const films = JSON.parse(localStorage.getItem('queue') || '[]');
 
-    if (found) {
-      watchedFilms.splice(
-        watchedFilms.findIndex(film => +film.id === +movieId),
-        1
-      );
+  const watchedFilms = JSON.parse(localStorage.getItem('queue') || '[]');
+  let found = watchedFilms.find(obj => obj.id === +movieId);
 
-      localStorage.setItem('queue', JSON.stringify(watchedFilms));
-      document.querySelector('.film-modal-btn-action.transparent').textContent =
-        'add to queue';
-    } else {
-      watchedFilms.push(data);
-      localStorage.setItem('queue', JSON.stringify(watchedFilms));
-    }
-  } catch (err) {
-    console.log(err);
+  if (found) {
+    watchedFilms.splice(
+      watchedFilms.findIndex(film => +film.id === +movieId),
+      1
+    );
 
-    films.push(data);
-
-    localStorage.setItem('queue', JSON.stringify(films));
+    localStorage.setItem('queue', JSON.stringify(watchedFilms));
+    document.querySelector('.film-modal-btn-action.transparent').textContent =
+      'add to queue';
+  } else {
+    watchedFilms.push(data);
+    localStorage.setItem('queue', JSON.stringify(watchedFilms));
   }
+
+  films.push(data);
+
+  localStorage.setItem('queue', JSON.stringify(films));
+
 }
