@@ -180,22 +180,23 @@
   font-style: italic;
   font-weight: 524;
   font-size: 30px;
-  padding: 15px 1px;
-  line-height: 39px;
+  // padding: 15px 1px;
+  line-height: 30px;
+  position: absolute;
   color: rgba(158, 157, 157, 0.767);
   font-variation-settings: 'slnt' -10;
   text-shadow: 0 1px 6px orange;
 
-  @media screen and (min-width: 767px) {
-    top: 45%;
-    right: 35%;
+  @media screen and (min-width: 768px) {
+    top: 176px;
+    right: 30px;
   }
 
   @media screen and (min-width: 1280px) {
     top: 44%;
     right: 37%;
   }
-
+}
   // fill: #000000;
   // transform: scale(0.8);
   // transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -205,7 +206,7 @@
   // &:focus {
   //   fill: #00abf7;
   //   transform: scale(1.5);
-}
+
 // }
 
 .title-team {
@@ -215,28 +216,43 @@
   font-family: 'Inter';
   font-style: italic;
   font-weight: 524;
-  font-size: 30px;
+  font-size: 25px;
   line-height: 39px;
   color: rgba(158, 157, 157, 0.767);
   font-variation-settings: 'slnt' -10;
   text-shadow: 0 1px 6px orange;
-  @media screen and (min-width: 767px) {
-    top: 45%;
-    right: 35%;
+}
+
+  @media screen and (max-width: 768px) {
+    .title-team {
+    top: 176px;
+    right: 30px;
   }
+}
 
   @media screen and (min-width: 1280px) {
+  .title-team {
     top: 44%;
     right: 37%;
   }
 }
+
+    @media screen and (max-width: 480px) {
+      .title-team {
+      top: 266px;
+      right: 7px;
+      font-size: 25px;
+      }
+    }
+
+
 
 .confetti-button {
   background-color: #404663;
   color: #fff;
   border: 0;
   top: 304px;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 400;
   padding: 4px;
   border-radius: 0.5em;
@@ -251,6 +267,15 @@
     0px 25.1px 33.4px rgba(0, 0, 0, 0.05), 0px 60px 80px rgba(0, 0, 0, 0.07);
 }
 
+@media screen and (max-width: 480px) {
+  .confetti-button {
+    font-size: 10px;
+  }
+}
+
+
+
+
 .confetti-button:active {
   z-index: 3;
 }
@@ -263,3 +288,16 @@
   width: 130px;
   height: 130px;
 }
+
+  @media screen and (max-width: 768px) {
+    .image_team {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .image_team {
+      width: 15px;
+      height: 15px;
+    }
+  }
