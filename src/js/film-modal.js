@@ -7,6 +7,8 @@ const refs = {
   closeModalBtn: document.querySelector('.film-modal-close'),
   filmModalWrapEl: document.querySelector('.film-modal-wrap'),
   body: document.querySelector('body'),
+  filmTrailerBackdrop: document.querySelector('.film-trailer-backdrop'),
+  filmTrailerWrap: document.querySelector('.film-trailer'),
 };
 refs.openFilmModal.addEventListener('click', onFilmCardClick);
 
@@ -40,8 +42,9 @@ async function onFilmCardClick(e) {
 
     const modalFilmMarkup = `
         <div class="film-modal-img">
-          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${TheMovieDbAPI.IMG_URL + poster_path
-      } movie" />
+          <img src="${TheMovieDbAPI.IMG_URL + poster_path}" alt="poster of ${
+      TheMovieDbAPI.IMG_URL + poster_path
+    } movie" />
         </div>
         <div class="film-modal-info">
           <h2 class="film-modal-title">${title.toUpperCase()}</h2>
@@ -50,8 +53,8 @@ async function onFilmCardClick(e) {
               <p class="film-modal-stats-name">Vote / Votes</p>
               <p class="film-modal-stats-value">
                 <span>${vote_average.toFixed(
-        1
-      )}</span> / <span>${vote_count}</span>
+                  1
+                )}</span> / <span>${vote_count}</span>
               </p>
             </li>
             <li class="film-modal-stats-row">
@@ -79,6 +82,9 @@ async function onFilmCardClick(e) {
             </button>
             <button type="submit" class="film-modal-btn-action transparent" data-movie-id="${movieId}">
               add to queue
+            </button>
+				<button type="submit" class="film-modal-btn-action black" data-movie-id="${movieId}">
+              watch the trailer
             </button>
           </div>
         </div>`;
@@ -117,25 +123,41 @@ async function onFilmCardClick(e) {
   const addToQueuelistBtn = document.querySelector(
     '.film-modal .film-modal-btn-action.transparent'
   );
+  const watchTrailerBtn = document.querySelector(
+    '.film-modal .film-modal-btn-action.black'
+  );
 
   addToWatchlistBtn.addEventListener('click', onAddToWatchedBtnClick);
   addToQueuelistBtn.addEventListener('click', onAddToQueueBtnClick);
+  watchTrailerBtn.addEventListener('click', onWatchTrailerBtnClick);
 }
 
 function onCloseModalBtn(e) {
   if (e.target !== e.currentTarget && e.currentTarget !== refs.closeModalBtn) {
     return;
   }
+  refs.filmTrailerWrap.innerHTML = '';
   refs.filmModalWrapEl.innerHTML = '';
+
   refs.filmModal.classList.add('is-hidden');
   refs.body.classList.remove('no-scroll');
+
   document.removeEventListener('keydown', onEscKeyBtnPress);
   refs.closeModalBtn.removeEventListener('click', onCloseModalBtn);
 }
 
 function onEscKeyBtnPress(e) {
-  if (e.code === 'Escape') {
-    onCloseModalBtn();
+  if (
+    e.code === 'Escape' &&
+    refs.filmTrailerBackdrop.classList.contains('is-hidden')
+  ) {
+    refs.filmTrailerWrap.innerHTML = '';
+    refs.filmModalWrapEl.innerHTML = '';
+
+    refs.filmModal.classList.add('is-hidden');
+    refs.body.classList.remove('no-scroll');
+    document.removeEventListener('keydown', onEscKeyBtnPress);
+    refs.closeModalBtn.removeEventListener('click', onCloseModalBtn);
   }
 }
 
@@ -177,7 +199,6 @@ async function onAddToQueueBtnClick(e) {
 
   const movieId = e.target.dataset.movieId;
 
-
   const { data } = await theMovieDbAPI.getMovieInfoById(movieId);
 
   const films = JSON.parse(localStorage.getItem('queue') || '[]');
@@ -202,5 +223,55 @@ async function onAddToQueueBtnClick(e) {
   films.push(data);
 
   localStorage.setItem('queue', JSON.stringify(films));
+}
 
+async function onWatchTrailerBtnClick(e) {
+  const movieId = e.target.dataset.movieId;
+
+  try {
+    const {
+      data: { results },
+    } = await theMovieDbAPI.getMovieTrailerById(movieId);
+
+    let key = '';
+    for (const el of results) {
+      if (el.name === 'Official Trailer') {
+        key = el.key;
+      }
+    }
+    refs.filmTrailerWrap.innerHTML = `<iframe
+	 width="100%"
+	 height="100%"
+    src="${TheMovieDbAPI.YOUTUBE_URL + key}"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>`;
+
+    const el = document.querySelector('iframe');
+    const watchTrailerBtn = document.querySelector(
+      '.film-modal .film-modal-btn-action.black'
+    );
+
+    if (el.src.endsWith('/')) {
+      watchTrailerBtn.classList.add('no-trailer');
+      watchTrailerBtn.textContent = 'Sorry, no trailer found';
+      return;
+    }
+    refs.filmTrailerBackdrop.classList.remove('is-hidden');
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+refs.filmTrailerBackdrop.addEventListener('click', onFilmTrailerBackdropClick);
+
+function onFilmTrailerBackdropClick(e) {
+  if (e.target !== e.currentTarget) {
+    return;
+  }
+
+  refs.filmTrailerBackdrop.classList.add('is-hidden');
+  refs.filmTrailerWrap.innerHTML = '';
 }
