@@ -1,9 +1,8 @@
 import * as basicLightbox from 'basiclightbox';
 
-
 const markupTeam = `
 		<div class="modal-team">
-        
+
             <div class="team-card">
                 <a href="https://github.com/darinadari13" target="_blank" class="team-git">
                     <img class="image_team" src="https://i.ibb.co/3BTGp6S/photo-2023-01-23-17-15-42.jpg"   alt="Dari">
@@ -56,29 +55,32 @@ const markupTeam = `
                 <p class="team-name">Yuliia</p>
                 <p class="team-role">Developer</p></div>
             <div class="title-team"> <confetti-button></confetti-button>    </div>
-        </div>    
-            
-      
-`;
+        </div>
 
+
+`;
 
 const linkFooter = document.querySelector('.js-team-modal');
 linkFooter.addEventListener('click', openModalTeam);
 const modalTeam = basicLightbox.create(markupTeam);
 
-
 function openModalTeam(e) {
-    e.preventDefault();
-    modalTeam.show();
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', closeModalTeam);
+  e.preventDefault();
+  modalTeam.show();
+  backdrop = document.querySelector(
+    'body > div.basicLightbox.basicLightbox--visible'
+  );
+  console.log(backdrop);
 
-    function closeModalTeam(e) {
-        if (e.code === 'Escape') {
-            modalTeam.close();
-            window.removeEventListener('keydown', closeModalTeam);
-            document.body.style.overflow = 'scroll';
-        }
+  //   document.body.style.overflow = 'hidden';
+
+  window.addEventListener('keydown', closeModalTeam);
+
+  function closeModalTeam(e) {
+    if (e.code === 'Escape') {
+      modalTeam.close();
+      window.removeEventListener('keydown', closeModalTeam);
+      document.body.style.overflow = 'scroll';
     }
+  }
 }
-
