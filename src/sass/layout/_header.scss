@@ -1,6 +1,5 @@
 .header {
   padding-top: 40px;
-  // padding-bottom: 92px;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(../images/index-header-bg-320.jpg);
@@ -15,7 +14,6 @@
   @include adaptive(tablet) {
     height: 219px;
     padding-top: 40px;
-    // padding-bottom: 80px;
     background-image: url(../images/index-header-bg-768.jpg);
 
     @media (min-device-pixel-ratio: 2),
