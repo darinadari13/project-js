@@ -1,0 +1,55 @@
+.page-up-btn {
+  z-index: 50;
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+
+  display: none;
+  width: 52px;
+  height: 52px;
+  color: var(--text-color-main);
+  background-color: var(--accent-color-main);
+  border: 1px solid transparent;
+  outline: none;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.33; /* 16/12 */
+  text-transform: uppercase;
+  border-radius: 50%;
+  transition: color 250ms ease, background-color, 250ms ease;
+
+  &.shown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--text-color-secondary);
+    opacity: 0.8;
+    color: var(--text-color-main);
+    border: 1px solid var(--text-color-secondary);
+    box-shadow: 0px 0px 15px 7px rgba(12, 12, 12, 0.6);
+  }
+
+  @media (min-width: 576px) {
+    width: 64px;
+    height: 64px;
+    bottom: 90px;
+    right: 40px;
+    font-size: 56px;
+  }
+  @include adaptive(desktop) {
+    width: 80px;
+    height: 80px;
+    bottom: 90px;
+    right: 40px;
+    font-size: 66px;
+  }
+}

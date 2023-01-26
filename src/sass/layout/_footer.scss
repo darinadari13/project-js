@@ -1,0 +1,48 @@
+.footer {
+  display: flex;
+  height: 79px;
+  background-color: #e5e5e5;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    color: #545454;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.14;
+
+    @include adaptive(tablet) {
+      font-size: 16px;
+      line-height: 1.19;
+    }
+  }
+  &__heart {
+    height: 15px;
+    width: 14px;
+    fill: #ff6b08;
+  }
+}
+
+.student-link {
+  color: var(--accent-color-main);
+  &:hover,
+  &:focus {
+    color: var(--text-color-warning);
+  }
+}
+
+body.dark-mode .footer {
+  background-color: #7c2017;
+}
+
+body.dark-mode .footer__text {
+  color: var(--text-color-main);
+}
+body.dark-mode .student-link {
+  color: #f06a32;
+  &:hover,
+  &:focus {
+    color: var(--text-color-main);
+  }
+}

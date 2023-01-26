@@ -1,0 +1,25 @@
+@import './common';
+
+@import './components/container';
+
+@import './utils/mixins';
+@import './utils/placeholders';
+@import './utils/variables';
+
+@import './layout/header';
+@import './layout/home-page';
+@import './layout/my-library';
+@import './layout/footer';
+@import './layout/teamModal';
+@import './layout/film-modal';
+
+//@import './layout/modal';
+@import './layout/_request.API';
+
+//@import './example';
+
+@import './utils/placeholders';
+
+// @import './layout/preloader';
+@import './layout/preloaderBtn';
+@import './layout/button-up';

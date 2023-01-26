@@ -1,0 +1,42 @@
+<header class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <nav class="header__site-nav">
+        <a href="./index.html" class="header__logo">
+          <svg class="header__icon">
+            <use href="./images/icons.svg#icon-film"></use>
+          </svg>
+          <span class="header__name">Filmoteka</span>
+        </a>
+
+        <ul class="header__navigation navigation">
+          <li class="navigation__item">
+            <a class="navigation__link current-link" href="./index.html"
+              >home</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a class="navigation__link" href="./my-library.html">my library</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="search__wrapper">
+        <input
+          type="text"
+          name="search-box"
+          class="search"
+          placeholder="Movie search"
+        />
+        <svg class="search__icon">
+          <use href="./images/icons.svg#icon-search-2"></use>
+        </svg>
+      </div>
+      <p class="search__warning"></p>
+    </div>
+    <input id="toggle" class="toggle" type="checkbox" />
+  </div>
+</header>
+<button type="button" aria-label="Go to the top" class="page-up-btn">
+  &#8679;
+</button>

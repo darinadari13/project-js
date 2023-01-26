@@ -1,0 +1,18 @@
+.poster__vote {
+  font-size: 12px;
+  background-color: orange;
+  color: white;
+  border-radius: 15px;
+  padding: 3px 7px;
+}
+
+.loaded.library-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.loaded.library-page .content {
+  flex-grow: 1;
+  padding-bottom: 0;
+}

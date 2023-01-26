@@ -1,0 +1,322 @@
+// COMMON
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body {
+  //   cursor: url('../images/cursor.svg'), auto;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+// SPECIAL
+
+.film-trailer-backdrop {
+  z-index: 101;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.film-trailer {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  height: 47%;
+  padding: 0 30px;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 400ms ease, opacity 250ms ease;
+  & iframe {
+    border-radius: 5px;
+  }
+
+  .film-trailer-backdrop.is-hidden & {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  @media (min-width: 668px) {
+    padding: 0 0;
+    height: 68%;
+    max-width: 704px;
+  }
+  @media (min-width: 1070px) {
+    padding: 0 0;
+    max-width: 806px;
+  }
+}
+
+.film-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.film-modal {
+  overflow-y: auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-family: Roboto, sans-serif;
+
+  padding: 48px 20px 40px;
+  max-width: 95%;
+  height: 100vh;
+  background-color: var(--bg-color-main);
+  border: 1px solid var(--text-color-modal);
+  border-radius: 3px;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 400ms ease, opacity 250ms ease;
+
+  .film-modal-backdrop.is-hidden & {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  @include adaptive(tablet) {
+    overflow: hidden;
+    max-width: 704px;
+    height: auto;
+  }
+  @include adaptive(desktop) {
+    padding: 40px 12px;
+    max-width: 806px;
+    max-height: 558px;
+  }
+}
+
+.film-modal-close {
+  display: block;
+  border: none;
+  background-color: transparent;
+  margin-left: auto;
+  margin-top: -40px;
+  margin-right: -12px;
+  margin-bottom: 10px;
+
+  @include adaptive(tablet) {
+    margin-top: -32px;
+    margin-right: -10px;
+    margin-bottom: 0;
+  }
+  @include adaptive(desktop) {
+    margin-top: -32px;
+    margin-right: -4px;
+    margin-bottom: 0;
+  }
+}
+
+.film-modal-close-icon {
+  fill: var(--text-color-secondary);
+  transition: fill 250ms ease;
+  &:hover,
+  &:focus {
+    fill: var(--accent-color-main);
+  }
+}
+
+.film-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @include adaptive(tablet) {
+    flex-direction: row;
+    gap: 68px;
+  }
+  @include adaptive(desktop) {
+    gap: 16px;
+  }
+}
+
+.film-modal-img {
+  flex: 0 1 48%;
+  border-radius: 5px;
+  overflow: hidden;
+
+  @include adaptive(desktop) {
+    opacity: 0.75;
+  }
+}
+
+.film-modal-img img {
+  transition: transform 250ms ease;
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+  }
+  @include adaptive(desktop) {
+    height: 478px;
+  }
+}
+
+.film-modal-info {
+  flex: 0 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.film-modal-title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15; /* 23/20 */
+  color: var(--text-color-secondary);
+  text-transform: uppercase;
+  @include adaptive(desktop) {
+    font-size: 30px;
+    line-height: 1.16; /* 35/30 */
+  }
+}
+.film-modal-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.film-modal-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &:first-child {
+    color: var(--text-color-modal);
+    & .film-modal-stats-value {
+      & span {
+        line-height: 1.67; /* 14/12 */
+        &:first-child {
+          color: var(--text-color-main);
+          padding: 0 10px;
+          background-color: var(--accent-color-main);
+          border-radius: 5px;
+        }
+        &:last-child {
+          color: var(--text-color-secondary);
+          padding: 0 4px;
+          background-color: var(--bg-color-header);
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+.film-modal-stats-name,
+.film-modal-stats-value {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33; /* 16/12 */
+}
+
+.film-modal-stats-name {
+  flex: 0 1 33%;
+  color: var(--text-color-modal);
+}
+
+.film-modal-stats-value {
+  flex: 0 1 64%;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.film-modal-description {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67; /* 20/12 */
+  margin-bottom: 8px;
+}
+
+.film-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  @include adaptive(desktop) {
+    justify-content: start;
+  }
+}
+
+.film-modal-btn-action {
+  font-family: inherit;
+
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33; /* 16/12 */
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.film-modal-btn-action {
+  padding-top: 5px;
+  width: 130px;
+  min-height: 50px;
+  transition: color 250ms ease, background-color, 250ms ease;
+}
+
+.film-modal-btn-action.accent {
+  color: var(--text-color-main);
+  background-color: var(--accent-color-main);
+  border: 1px solid transparent;
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--accent-color-main);
+    background-color: var(--bg-color-main);
+    color: var(--accent-color-main);
+    box-shadow: 0px 0px 15px 7px rgba(243, 140, 6, 0.6);
+  }
+}
+
+.film-modal-btn-action.transparent {
+  background-color: transparent;
+  border: 1px solid var(--text-color-secondary);
+  &:hover,
+  &:focus {
+    background-color: var(--text-color-secondary);
+    color: var(--text-color-main);
+    border: 1px solid var(--text-color-secondary);
+    box-shadow: 0px 0px 15px 7px rgba(12, 12, 12, 0.6);
+  }
+}
+.film-modal-btn-action.black {
+  width: 287px;
+  color: var(--text-color-main);
+  background-color: var(--text-color-secondary);
+  border: 1px solid var(--text-color-secondary);
+  &:hover,
+  &:focus {
+    background-color: var(--text-color-main);
+    color: var(--text-color-secondary);
+    border: 1px solid var(--text-color-secondary);
+    box-shadow: 0px 0px 15px 7px rgba(12, 12, 12, 0.6);
+  }
+}
+
+.film-modal-btn-action.black.no-trailer {
+  color: var(--text-color-main);
+  background-color: red;
+  border: 1px solid red;
+}
+
+body.dark-mode .film-modal {
+  background-color: #757473d0;
+}
+body.dark-mode .film-modal-stats-name {
+  color: black;
+}
